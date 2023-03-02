@@ -1,6 +1,12 @@
 # TBD App
 
+By 3/10 (next Friday), include a ReadMe in your project with an overview of the project:
 
+Description of what it does
+List specifically the iOS/API technologies you think you will use
+List specifically what you think the sources of complexity/difficulty will be
+This, along with next milestone storyboards, is 5% of the project grade.
+Next Wednesday's class (3/8) will be a working session; an opportunity to ask me questions and your team to finalize their document.  You know, before you mentally checkout before break.
 
 ## Getting started
 
