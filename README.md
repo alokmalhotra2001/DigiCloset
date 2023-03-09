@@ -1,12 +1,87 @@
 # TBD App
 
-By 3/10 (next Friday), include a ReadMe in your project with an overview of the project:
+## 3/10 Project Overview:
 
-Description of what it does
-List specifically the iOS/API technologies you think you will use
-List specifically what you think the sources of complexity/difficulty will be
-This, along with next milestone storyboards, is 5% of the project grade.
-Next Wednesday's class (3/8) will be a working session; an opportunity to ask me questions and your team to finalize their document.  You know, before you mentally checkout before break.
+### App Overview:
+Fashion App assistant that makes mornings easier and digitizes your laundry pile. On this app, you can upload photos of your clothing and swipe through your closet to select a top, bottom and shoes pairing for the day by exploring the “clean” clothing items in your closet. The app will further remind you to do laundry when your virtual “dirty” clothes bin is full. For rarely worn items of clothing, the app will recommend local donation centers to pass on the clothing. The app will also be capable of recommending clothes to wear in the form of outfits. These outfits will be based on user preferences and weather data, with potential to integrate even more parameters into clothing recommendations.
+
+### API technologies being used:
+Weather API (to help with deciding daily outfits)
+Maps API (for finding the closest donation center)
+
+### Sources of Complexity/Difficulty:
+Updating the recommended clothing items based on changes in weather (i.e. temperature, expected forecast, etc.)
+Storage & organization issues -- user uploading photos 
+Recommending clothing items based on an intelligent recommender rather than randomly generating (could take way too long to generate ideal outfit selections)
+Custom API calls to database and designing said database
+Fitting all the commands and features into aesthetic UI
+
+
+### App Details:
+myCloset = [clothingItem]
+Datastore holds clothingItems
+
+clothingItem
+Required
+Unique identifier
+Image (person uploads this image)
+Label (top (t-shirt, sweater, long sleeve), bottom (pants, shorts, skirts) )
+Boolean clean/dirty (default clean)
+The last time it was worn (default to when clothing was uploaded into the app)
+- Optionals
+Temperature range 
+Pairing restrictions (only pair X with skirts, only pair Y with long-sleeve tops, etc) (default no restrictions)
+Number of uses before wash (default 1)
+Number of times used (this is only applicable for clothes that are worn more than once)
+Marked as ‘dirty’ when number of times used == number of times before washed
+Computed property
+Eligible for donation?
+If the last time it was worn > 30 days ago AND it was something that was able to be worn for the temperature ranges of the previous month >70% of the time, mark as eligible
+
+dailyView
+Daily temperature range at the top
+Two swiping features in a vertical stack
+On load of the view, an outfit that was pre-picked from a calendar view is the one that shows up
+If no outfit was pre-picked from a calendar view, the first top and bottom in the closet shows up
+Swipe between tops, swipe between bottoms
+Generate a random outfit
+Only can choose from clean clothes, is done within the bounds of pairing restrictions and temperature ranges
+Can generate as many times as you want; have the option to ‘lock’ a top/bottom if you like it, and only generate random corresponding bottom/top
+Reset outfit
+If outfit was pre-picked from a calendar view
+If any changes are made, and the user clicks ‘reset,’ it resets back to this pre-picked outfit
+If no outfit was pre-picked from a calendar view
+Clicking reset just goes to the first top and first bottoms item
+Button to say ‘I wore this’
+Have a confirmation screen show up; we want this to be intentional
+Marks the clothing items in the outfit as ‘dirty’ (or, if there are more than one uses before washing, marks it as used one time)
+Button to say ‘I’ve done my laundry’
+Again have a confirmation screen show up
+Any clothing items that have been marked as dirty become clean
+For the clothes that can be worn more than once:
+If the clothes have been worn before, but not the max number of times until they’re dirty, have a pop up to ask the user if they washed it or not
+Button to add clothing item
+Prompts user to take a picture
+Takes user to form to have them fill out label, temp range, pairing restrictions, number of uses
+
+weeklyView
+7 day calendar view
+Can click on any day
+See the daily temperature range at the top
+Swipe through or generate a random outfit
+‘Lock’ outfit
+Button to generate a random week of outfits
+Does not overwrite any days you have locked
+If an updated temperature range occurs that will change an outfit
+Warning sign showing up over that day – “the temperature has changed. Would you like to re-generate your outfit?”
+If the clothing item that was scheduled to be worn later in the week was chosen days before:
+Warning sign showing up over that day – “this item is dirty. Would you like to re-generate an outfit?”
+
+donationView
+Show the clothes that are eligible for donation
+Map view of nearest donation places to you
+Button ‘mark as donated’ - removes the clothingItem from the closet
+
 
 ## Getting started
 
@@ -49,50 +124,3 @@ Use the built-in continuous integration in GitLab.
 - [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
 
 ***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
