@@ -82,6 +82,9 @@ Show the clothes that are eligible for donation
 Map view of nearest donation places to you
 Button ‘mark as donated’ - removes the clothingItem from the closet
 
+## Jon Approval 3/17/23
+* Nicely done, good luck!
+* I appreciate the detailed thought to date.
 
 ## Getting started
 
