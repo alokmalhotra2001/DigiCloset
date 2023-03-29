@@ -86,6 +86,9 @@ Button ‘mark as donated’ - removes the clothingItem from the closet
 * Nicely done, good luck!
 * I appreciate the detailed thought to date.
 
+## Jon Storyboard Approval 3/26/23
+* Great detail. This will be fun.
+
 ## Getting started
 
 To make it easy for you to get started with GitLab, here's a list of recommended next steps.
