@@ -8,17 +8,31 @@
 
 /* Begin PBXBuildFile section */
 		429A748D29D48325007EE95E /* Fashion_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429A748C29D48325007EE95E /* Fashion_AppApp.swift */; };
-		429A748F29D48325007EE95E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429A748E29D48325007EE95E /* ContentView.swift */; };
 		429A749129D48326007EE95E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 429A749029D48326007EE95E /* Assets.xcassets */; };
 		429A749429D48326007EE95E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 429A749329D48326007EE95E /* Preview Assets.xcassets */; };
+		4EE92C3A29D488800056B868 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE92C3929D488800056B868 /* DataStore.swift */; };
+		4EE92C3C29D488D30056B868 /* TabContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE92C3B29D488D30056B868 /* TabContainer.swift */; };
+		4EE92C3E29D488FE0056B868 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE92C3D29D488FE0056B868 /* APIError.swift */; };
+		4EE92C4029D489090056B868 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE92C3F29D489090056B868 /* APIClient.swift */; };
+		4EE92C4229D489760056B868 /* MyCloset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE92C4129D489760056B868 /* MyCloset.swift */; };
+		4EE92C4429D489800056B868 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE92C4329D489800056B868 /* Calendar.swift */; };
+		4EE92C4629D489890056B868 /* Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE92C4529D489890056B868 /* Today.swift */; };
+		4EE92C4829D4898F0056B868 /* Donate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE92C4729D4898F0056B868 /* Donate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		429A748929D48325007EE95E /* Fashion-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fashion-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		429A748C29D48325007EE95E /* Fashion_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fashion_AppApp.swift; sourceTree = "<group>"; };
-		429A748E29D48325007EE95E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		429A749029D48326007EE95E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		429A749329D48326007EE95E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4EE92C3929D488800056B868 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		4EE92C3B29D488D30056B868 /* TabContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContainer.swift; sourceTree = "<group>"; };
+		4EE92C3D29D488FE0056B868 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		4EE92C3F29D489090056B868 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		4EE92C4129D489760056B868 /* MyCloset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCloset.swift; sourceTree = "<group>"; };
+		4EE92C4329D489800056B868 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
+		4EE92C4529D489890056B868 /* Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Today.swift; sourceTree = "<group>"; };
+		4EE92C4729D4898F0056B868 /* Donate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Donate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +65,13 @@
 		429A748B29D48325007EE95E /* Fashion-App */ = {
 			isa = PBXGroup;
 			children = (
+				4EE92C3729D4882A0056B868 /* API */,
+				4EE92C3629D488240056B868 /* Features */,
+				4EE92C3529D4881E0056B868 /* Services */,
+				4EE92C3429D488190056B868 /* Models */,
 				429A748C29D48325007EE95E /* Fashion_AppApp.swift */,
-				429A748E29D48325007EE95E /* ContentView.swift */,
+				4EE92C3B29D488D30056B868 /* TabContainer.swift */,
+				4EE92C3929D488800056B868 /* DataStore.swift */,
 				429A749029D48326007EE95E /* Assets.xcassets */,
 				429A749229D48326007EE95E /* Preview Content */,
 			);
@@ -65,6 +84,48 @@
 				429A749329D48326007EE95E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4EE92C3429D488190056B868 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4EE92C3529D4881E0056B868 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		4EE92C3629D488240056B868 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				4EE92C4129D489760056B868 /* MyCloset.swift */,
+				4EE92C4329D489800056B868 /* Calendar.swift */,
+				4EE92C4529D489890056B868 /* Today.swift */,
+				4EE92C4729D4898F0056B868 /* Donate.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		4EE92C3729D4882A0056B868 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				4EE92C3829D488310056B868 /* APIClient */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		4EE92C3829D488310056B868 /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+				4EE92C3D29D488FE0056B868 /* APIError.swift */,
+				4EE92C3F29D489090056B868 /* APIClient.swift */,
+			);
+			path = APIClient;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +198,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				429A748F29D48325007EE95E /* ContentView.swift in Sources */,
+				4EE92C3C29D488D30056B868 /* TabContainer.swift in Sources */,
+				4EE92C3E29D488FE0056B868 /* APIError.swift in Sources */,
+				4EE92C3A29D488800056B868 /* DataStore.swift in Sources */,
+				4EE92C4829D4898F0056B868 /* Donate.swift in Sources */,
+				4EE92C4229D489760056B868 /* MyCloset.swift in Sources */,
+				4EE92C4029D489090056B868 /* APIClient.swift in Sources */,
 				429A748D29D48325007EE95E /* Fashion_AppApp.swift in Sources */,
+				4EE92C4429D489800056B868 /* Calendar.swift in Sources */,
+				4EE92C4629D489890056B868 /* Today.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

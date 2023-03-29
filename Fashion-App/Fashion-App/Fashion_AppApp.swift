@@ -11,7 +11,7 @@ import SwiftUI
 struct Fashion_AppApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabContainer()
         }
     }
 }
