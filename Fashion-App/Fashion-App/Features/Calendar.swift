@@ -4,6 +4,7 @@ struct Calendar: View {
     
     @State private var date = Date()
     
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -29,7 +30,6 @@ struct CalendarView: UIViewRepresentable {
     
     func makeUIView(context: Context) -> UICalendarView {
         let calView = UICalendarView()
-        //.backgroundColor = .black
         calView.backgroundColor = .white
         calView.availableDateRange = interval
         //view.dateSelection(UICalendarSelectionSingleDate, canSelectDate: DateComponents?)
