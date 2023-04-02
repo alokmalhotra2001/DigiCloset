@@ -5,13 +5,13 @@ struct TabContainer: View {
     var body: some View {
         TabView{
             NavigationView { MyCloset() }
-                .tabItem { Label("My Closet", systemImage: "list.star") }
+                .tabItem { Label("My Closet", systemImage: "cabinet.fill") }
             NavigationView { Today() }
                 .tabItem { Label("Today", systemImage: "book") }
             NavigationView { Calendar() }
-                .tabItem { Label("Calendar", systemImage: "list.star") }
+                .tabItem { Label("Calendar", systemImage: "calendar") }
             NavigationView { Donate() }
-                .tabItem { Label("Donate", systemImage: "list.star") }
+                .tabItem { Label("Donate", systemImage: "box.truck") }
         }
     }
 }
