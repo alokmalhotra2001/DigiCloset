@@ -12,6 +12,8 @@
 		429A749429D48326007EE95E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 429A749329D48326007EE95E /* Preview Assets.xcassets */; };
 		4E181CA929D7365B00A5A49F /* ClothingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E181CA829D7365B00A5A49F /* ClothingItem.swift */; };
 		4E181CAB29D756D700A5A49F /* WardrobeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E181CAA29D756D700A5A49F /* WardrobeStore.swift */; };
+		4E181CCE29DA215600A5A49F /* RangedSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E181CCD29DA215600A5A49F /* RangedSliderView.swift */; };
+		4E181CD729DA72A500A5A49F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E181CD629DA72A500A5A49F /* ImagePicker.swift */; };
 		4EE92C3C29D488D30056B868 /* TabContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE92C3B29D488D30056B868 /* TabContainer.swift */; };
 		4EE92C3E29D488FE0056B868 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE92C3D29D488FE0056B868 /* APIError.swift */; };
 		4EE92C4029D489090056B868 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE92C3F29D489090056B868 /* APIClient.swift */; };
@@ -29,6 +31,8 @@
 		429A749329D48326007EE95E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4E181CA829D7365B00A5A49F /* ClothingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingItem.swift; sourceTree = "<group>"; };
 		4E181CAA29D756D700A5A49F /* WardrobeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeStore.swift; sourceTree = "<group>"; };
+		4E181CCD29DA215600A5A49F /* RangedSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangedSliderView.swift; sourceTree = "<group>"; };
+		4E181CD629DA72A500A5A49F /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		4EE92C3B29D488D30056B868 /* TabContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContainer.swift; sourceTree = "<group>"; };
 		4EE92C3D29D488FE0056B868 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		4EE92C3F29D489090056B868 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
@@ -69,6 +73,7 @@
 		429A748B29D48325007EE95E /* Fashion-App */ = {
 			isa = PBXGroup;
 			children = (
+				4E181CCC29DA213C00A5A49F /* External Components */,
 				4EE92C3729D4882A0056B868 /* API */,
 				4EE92C3629D488240056B868 /* Features */,
 				4EE92C3529D4881E0056B868 /* Services */,
@@ -120,6 +125,15 @@
 				4EE92C4729D4898F0056B868 /* Donate.swift */,
 			);
 			path = Donate;
+			sourceTree = "<group>";
+		};
+		4E181CCC29DA213C00A5A49F /* External Components */ = {
+			isa = PBXGroup;
+			children = (
+				4E181CCD29DA215600A5A49F /* RangedSliderView.swift */,
+				4E181CD629DA72A500A5A49F /* ImagePicker.swift */,
+			);
+			path = "External Components";
 			sourceTree = "<group>";
 		};
 		4EE92C3429D488190056B868 /* Models */ = {
@@ -236,6 +250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E181CCE29DA215600A5A49F /* RangedSliderView.swift in Sources */,
 				4EE92C4A29D48F2C0056B868 /* ClothingItemForm.swift in Sources */,
 				4EE92C3C29D488D30056B868 /* TabContainer.swift in Sources */,
 				4E181CA929D7365B00A5A49F /* ClothingItem.swift in Sources */,
@@ -245,6 +260,7 @@
 				4EE92C4229D489760056B868 /* MyCloset.swift in Sources */,
 				4EE92C4029D489090056B868 /* APIClient.swift in Sources */,
 				429A748D29D48325007EE95E /* Fashion_AppApp.swift in Sources */,
+				4E181CD729DA72A500A5A49F /* ImagePicker.swift in Sources */,
 				4EE92C4429D489800056B868 /* Calendar.swift in Sources */,
 				4EE92C4629D489890056B868 /* Today.swift in Sources */,
 			);

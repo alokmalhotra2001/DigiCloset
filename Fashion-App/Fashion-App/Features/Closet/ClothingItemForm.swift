@@ -3,24 +3,52 @@ import Foundation
 
 struct ClothingForm: View {
     @Binding var data: ClothingItem.FormData
+    @State var showingImagePicker = false
+    @State var inputImage: UIImage?
 
     var body: some View {
         Form {
-            TextFieldWithLabel(label: "Title", text: $data.name, prompt: "Name")
+            Section(header: Text("Basic Clothing Info")) {
+                TextField("Title", text: $data.name)
+                Picker("Category", selection: $data.category) {
+                    ForEach(ClothingItem.Category.allCases) {
+                        category in Text(category.rawValue.capitalized)
+                    }
+                }
+                    .pickerStyle(MenuPickerStyle())
+            }
+            
+            Section(header: Text("Temperature Range")) {
+                RangedSliderView(value: $data.tempRange, bounds: 0...100)
+                    .padding()
+            }
+            
+            Section(header: Text("Image")) {
+                ZStack {
+                    Rectangle().fill(.white)
+                    if (data.img != Image(systemName: "photo")) {
+                        data.img.resizable().scaledToFit()
+                    }
+                    else {
+                        Text("Tap to Select a Picture")
+                            .foregroundColor(.black)
+                            .font(.headline)
+                    }
+                }
+                    .onTapGesture {
+                        showingImagePicker = true
+                    }
+                    .onChange(of: inputImage) { _ in loadImage() }
+            }
+        }
+        .sheet(isPresented: $showingImagePicker) {
+            ImagePicker(image: $inputImage)
         }
     }
-}
-
-struct TextFieldWithLabel: View {
-    let label: String
-    @Binding var text: String
-    var prompt: String? = nil
-
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text(label).bold().font(.caption)
-            TextField(label, text: $text, prompt: prompt != nil ? Text(prompt!) : nil).padding(.bottom, 20)
-        }
+    
+    func loadImage() {
+        guard let inputImage = inputImage else { return }
+        data.img = Image(uiImage: inputImage)
     }
 }
 
@@ -29,25 +57,3 @@ struct ClothingForm_Previews: PreviewProvider {
         ClothingForm(data: Binding.constant(ClothingItem.previewData[0].dataForForm))
     }
 }
-
-
-//import SwiftUI
-//import Foundation
-//
-//struct BookForm: View {
-//    @Binding var data: Book.FormData
-//
-//    var body: some View {
-//        Form {
-//            TextFieldWithLabel(label: "Id", text: $data.id, prompt: "Id")
-//            TextFieldWithLabel(label: "Title", text: $data.title, prompt: "Title")
-//            TextFieldWithLabel(label: "Author", text: $data.author, prompt: "Author")
-//        }
-//    }
-//}
-//
-//struct BookForm_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BookForm(data: Binding.constant(Book.previewData[0].dataForForm))
-//    }
-//}

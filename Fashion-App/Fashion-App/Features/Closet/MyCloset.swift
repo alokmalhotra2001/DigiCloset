@@ -37,8 +37,6 @@ struct MyCloset: View {
             }
             .padding()
         }
-        
-        Text("My Closet")
     }
 }
 
@@ -47,8 +45,17 @@ struct ClothingItemRow: View {
     
     var body: some View {
         HStack {
+            VStack {
+                clothingItem.img
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: 55, maxHeight: 55)
+            }
+    
             VStack(alignment: .leading) {
                 Text(clothingItem.name).fontWeight(.semibold)
+                Text(String(clothingItem.tempRange.lowerBound))
+                Text(String(clothingItem.tempRange.upperBound))
             }
         }
     }
