@@ -3,19 +3,17 @@ import SwiftUI
 struct Calendar: View {
     
     @State private var date = Date()
-    
+    //let dateRange:
     
     var body: some View {
+        
         NavigationStack {
             ScrollView {
-                CalendarView(interval: DateInterval(start: .distantPast, end: .distantFuture))
-                    
+                DatePicker("Selected Date", selection: $date, in: Date()..., displayedComponents: .date)
+                    .datePickerStyle(GraphicalDatePickerStyle())
             }
-            //.navigationTitle("Calendar View")
+//            //.navigationTitle("Calendar View")
         }
-        
-//        DatePicker("start date", selection: $date, displayedComponents: [.date])
-//            .datePickerStyle(.graphical)
     }
 }
 
@@ -32,7 +30,6 @@ struct CalendarView: UIViewRepresentable {
         let calView = UICalendarView()
         calView.backgroundColor = .white
         calView.availableDateRange = interval
-        //view.dateSelection(UICalendarSelectionSingleDate, canSelectDate: DateComponents?)
         calView.calendar = .current
         calView.locale = .current
         calView.fontDesign = .rounded
