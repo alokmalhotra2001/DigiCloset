@@ -23,18 +23,20 @@ struct Calendar: View {
                 //generate rest of week
                 
                 //shirt picker
-                Text("\(date.formatted(.dateTime.day().month().weekday()))")
+                Text("\(date.formatted(.dateTime.day().month(.wide).weekday(.wide)))")
                     .padding()
                 
                 HStack {
                     Image(systemName: "tshirt.fill")
                     Text("shirt")
+                        .padding()
                 }
                 
                 //bottoms picker
                 HStack {
                     Image(systemName: "tshirt.fill")
                     Text("bottoms")
+                        .padding()
                 }
                 
             }
