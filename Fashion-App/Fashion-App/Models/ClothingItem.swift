@@ -1,79 +1,89 @@
+import SwiftUI
+import PhotosUI
 import UIKit
 
 struct ClothingItem: Identifiable {
     let id: UUID = UUID()
     var name: String
-    var minTemp: Int
-    var maxTemp: Int
+    var tempRange: ClosedRange<Int>
     var category: Category
-    // var imgURL: URL
-}
-
-enum Category: String, CaseIterable, Identifiable {
-    var id: Self { self }
-    case top
-    case bottom
-}
-
-// Inclusive
-func getAllInCategory(cat: Category, clothes: [ClothingItem]) -> [ClothingItem] {
-    return clothes.filter{ $0.category == cat }
+    var img: Image
+    
+    // var state: State
+    // var lastWornOn: Date? = nil
+    
+    
+    enum Category: String, CaseIterable, Identifiable {
+        var id: Self { self }
+        case top
+        case bottom
+    }
+    
+    enum State: String, CaseIterable, Identifiable {
+        var id: Self { self }
+        case clean
+        case dirty
+    }
+    
+    // Inclusive
+    func getAllInCategory(cat: Category, clothes: [ClothingItem]) -> [ClothingItem] {
+        return clothes.filter{ $0.category == cat }
+    }
 }
 
 // Inclusive
 func getAllAboveMinTemp(min: Int, clothes: [ClothingItem]) -> [ClothingItem] {
-    return clothes.filter{ $0.minTemp >= min }
+    return clothes.filter{ $0.tempRange.lowerBound >= min }
 }
 
 // Inclusive
 func getAllBelowMaxTemp(max: Int, clothes: [ClothingItem]) -> [ClothingItem] {
-    return clothes.filter{ $0.maxTemp <= max }
+    return clothes.filter{ $0.tempRange.upperBound <= max }
 }
 
 // Inclusive
 func getAllInTempRange(min: Int, max: Int, clothes: [ClothingItem]) -> [ClothingItem] {
-    return clothes.filter{ $0.minTemp >= min && $0.maxTemp >= max }
+    return clothes.filter{ $0.tempRange.lowerBound >= min && $0.tempRange.upperBound >= max }
 }
 
 func printClothingItemInfo(item: ClothingItem) {
     print(item.name)
-    print(item.minTemp)
-    print(item.maxTemp)
+    print(item.tempRange.lowerBound)
+    print(item.tempRange.upperBound)
     print(item.category.rawValue)
 }
 
 extension ClothingItem {
     struct FormData {
         var name: String = ""
-        var minTemp: Int = 0
-        var maxTemp: Int = 100
+        var tempRange: ClosedRange<Int> = 40...80
         var category: Category = .top
-        // var imgURL: String = ""
+        var img: Image = Image(systemName: "photo")
     }
     
     var dataForForm: FormData {
-        FormData(name: name, minTemp: minTemp, maxTemp: maxTemp, category: category)
+        FormData(name: name, tempRange: tempRange, category: category, img: img)
     }
     
     static func create(from formData: FormData) -> ClothingItem {
-        let clothingItem = ClothingItem(name: formData.name, minTemp: formData.minTemp,
-                                        maxTemp: formData.maxTemp, category: formData.category)
+        let clothingItem = ClothingItem(name: formData.name, tempRange: formData.tempRange,
+                                        category: formData.category, img: formData.img)
         return ClothingItem.update(clothingItem, from: formData)
     }
     
     static func update(_ clothingItem: ClothingItem, from formData: FormData) -> ClothingItem {
         var clothingItem = clothingItem
         clothingItem.name = formData.name
-        clothingItem.minTemp = formData.minTemp
-        clothingItem.maxTemp = formData.maxTemp
+        clothingItem.tempRange = formData.tempRange.lowerBound...formData.tempRange.upperBound
         clothingItem.category = formData.category
+        clothingItem.img = formData.img
         return clothingItem
     }
 }
 
 extension ClothingItem {
     static let previewData: [ClothingItem] = [
-        ClothingItem(name: "Alok's Favorite Shirt", minTemp: 10, maxTemp: 90, category: .top),
-        ClothingItem(name: "Alok's Favorite Shorts", minTemp: 20, maxTemp: 80, category: .bottom)
+        ClothingItem(name: "Alok's Favorite Shirt", tempRange: 50...80, category: .top, img: Image(systemName: "photo")),
+        ClothingItem(name: "Alok's Favorite Shorts", tempRange: 40...60, category: .bottom, img: Image(systemName: "photo"))
     ]
 }
