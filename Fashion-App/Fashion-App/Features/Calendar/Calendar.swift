@@ -14,10 +14,29 @@ struct Calendar: View {
         
         NavigationStack {
             ScrollView {
+                //calendar view
                 DatePicker("Selected Date", selection: $date,
                            in: dateClosedRange,
                            displayedComponents: .date)
                     .datePickerStyle(GraphicalDatePickerStyle())
+                
+                //generate rest of week
+                
+                //shirt picker
+                Text("\(date.formatted(.dateTime.day().month().weekday()))")
+                    .padding()
+                
+                HStack {
+                    Image(systemName: "tshirt.fill")
+                    Text("shirt")
+                }
+                
+                //bottoms picker
+                HStack {
+                    Image(systemName: "tshirt.fill")
+                    Text("bottoms")
+                }
+                
             }
             //.navigationTitle(date)
         }
