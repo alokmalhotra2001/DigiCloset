@@ -18,6 +18,13 @@
 		4EE92C4429D489800056B868 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE92C4329D489800056B868 /* Calendar.swift */; };
 		4EE92C4629D489890056B868 /* Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE92C4529D489890056B868 /* Today.swift */; };
 		4EE92C4829D4898F0056B868 /* Donate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE92C4729D4898F0056B868 /* Donate.swift */; };
+		EBD63D2429DBD4D100F08BB1 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD63D2329DBD4D100F08BB1 /* MapView.swift */; };
+		EBD63D5429DE5C8F00F08BB1 /* Landmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD63D5329DE5C8F00F08BB1 /* Landmark.swift */; };
+		EBD63D5629DE5CA300F08BB1 /* LandmarkAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD63D5529DE5CA300F08BB1 /* LandmarkAnnotation.swift */; };
+		EBD63D5B29DE5CE800F08BB1 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD63D5A29DE5CE800F08BB1 /* LocationManager.swift */; };
+		EBD63D5D29DE5E0000F08BB1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD63D5C29DE5E0000F08BB1 /* ContentView.swift */; };
+		EBD63D5F29DE5E5000F08BB1 /* PlaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD63D5E29DE5E5000F08BB1 /* PlaceListView.swift */; };
+		EBD63D6229DE5EEE00F08BB1 /* ToDonate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD63D6129DE5EEE00F08BB1 /* ToDonate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +40,13 @@
 		4EE92C4329D489800056B868 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		4EE92C4529D489890056B868 /* Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Today.swift; sourceTree = "<group>"; };
 		4EE92C4729D4898F0056B868 /* Donate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Donate.swift; sourceTree = "<group>"; };
+		EBD63D2329DBD4D100F08BB1 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		EBD63D5329DE5C8F00F08BB1 /* Landmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Landmark.swift; path = "Fashion-App/Landmark.swift"; sourceTree = SOURCE_ROOT; };
+		EBD63D5529DE5CA300F08BB1 /* LandmarkAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LandmarkAnnotation.swift; path = "Fashion-App/LandmarkAnnotation.swift"; sourceTree = SOURCE_ROOT; };
+		EBD63D5A29DE5CE800F08BB1 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		EBD63D5C29DE5E0000F08BB1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EBD63D5E29DE5E5000F08BB1 /* PlaceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceListView.swift; sourceTree = "<group>"; };
+		EBD63D6129DE5EEE00F08BB1 /* ToDonate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDonate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,12 +79,15 @@
 		429A748B29D48325007EE95E /* Fashion-App */ = {
 			isa = PBXGroup;
 			children = (
+				EBD63D6029DE5E5C00F08BB1 /* Views */,
+				EBD63D5929DE5CD300F08BB1 /* Managers */,
 				4EE92C3729D4882A0056B868 /* API */,
 				4EE92C3629D488240056B868 /* Features */,
 				4EE92C3529D4881E0056B868 /* Services */,
 				4EE92C3429D488190056B868 /* Models */,
 				429A748C29D48325007EE95E /* Fashion_AppApp.swift */,
 				4EE92C3B29D488D30056B868 /* TabContainer.swift */,
+				EBD63D6129DE5EEE00F08BB1 /* ToDonate.swift */,
 				4EE92C3929D488800056B868 /* DataStore.swift */,
 				429A749029D48326007EE95E /* Assets.xcassets */,
 				429A749229D48326007EE95E /* Preview Content */,
@@ -89,6 +106,8 @@
 		4EE92C3429D488190056B868 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EBD63D5329DE5C8F00F08BB1 /* Landmark.swift */,
+				EBD63D5529DE5CA300F08BB1 /* LandmarkAnnotation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -126,6 +145,24 @@
 				4EE92C3F29D489090056B868 /* APIClient.swift */,
 			);
 			path = APIClient;
+			sourceTree = "<group>";
+		};
+		EBD63D5929DE5CD300F08BB1 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				EBD63D5A29DE5CE800F08BB1 /* LocationManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		EBD63D6029DE5E5C00F08BB1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EBD63D2329DBD4D100F08BB1 /* MapView.swift */,
+				EBD63D5E29DE5E5000F08BB1 /* PlaceListView.swift */,
+				EBD63D5C29DE5E0000F08BB1 /* ContentView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,14 +236,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EE92C3C29D488D30056B868 /* TabContainer.swift in Sources */,
+				EBD63D5429DE5C8F00F08BB1 /* Landmark.swift in Sources */,
+				EBD63D5D29DE5E0000F08BB1 /* ContentView.swift in Sources */,
 				4EE92C3E29D488FE0056B868 /* APIError.swift in Sources */,
 				4EE92C3A29D488800056B868 /* DataStore.swift in Sources */,
 				4EE92C4829D4898F0056B868 /* Donate.swift in Sources */,
 				4EE92C4229D489760056B868 /* MyCloset.swift in Sources */,
+				EBD63D6229DE5EEE00F08BB1 /* ToDonate.swift in Sources */,
 				4EE92C4029D489090056B868 /* APIClient.swift in Sources */,
 				429A748D29D48325007EE95E /* Fashion_AppApp.swift in Sources */,
+				EBD63D5629DE5CA300F08BB1 /* LandmarkAnnotation.swift in Sources */,
+				EBD63D2429DBD4D100F08BB1 /* MapView.swift in Sources */,
 				4EE92C4429D489800056B868 /* Calendar.swift in Sources */,
+				EBD63D5F29DE5E5000F08BB1 /* PlaceListView.swift in Sources */,
 				4EE92C4629D489890056B868 /* Today.swift in Sources */,
+				EBD63D5B29DE5CE800F08BB1 /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +382,7 @@
 				DEVELOPMENT_TEAM = 6N7D9YPFFG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs your location to show it on the map.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -367,6 +412,7 @@
 				DEVELOPMENT_TEAM = 6N7D9YPFFG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs your location to show it on the map.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
