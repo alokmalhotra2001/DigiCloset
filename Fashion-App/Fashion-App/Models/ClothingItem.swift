@@ -8,10 +8,8 @@ struct ClothingItem: Identifiable {
     var tempRange: ClosedRange<Int>
     var category: Category
     var img: Image
-    
-    // var state: State
-    // var lastWornOn: Date? = nil
-    
+    var clean: Bool
+    var lastWornOn: Date? = nil
     
     enum Category: String, CaseIterable, Identifiable {
         var id: Self { self }
@@ -53,6 +51,12 @@ func printClothingItemInfo(item: ClothingItem) {
     print(item.category.rawValue)
 }
 
+func dateToString(date: Date) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "MM/dd/YY"
+    return dateFormatter.string(from: date)
+}
+
 extension ClothingItem {
     struct FormData {
         var name: String = ""
@@ -67,7 +71,7 @@ extension ClothingItem {
     
     static func create(from formData: FormData) -> ClothingItem {
         let clothingItem = ClothingItem(name: formData.name, tempRange: formData.tempRange,
-                                        category: formData.category, img: formData.img)
+                                        category: formData.category, img: formData.img, clean: true)
         return ClothingItem.update(clothingItem, from: formData)
     }
     
@@ -83,7 +87,9 @@ extension ClothingItem {
 
 extension ClothingItem {
     static let previewData: [ClothingItem] = [
-        ClothingItem(name: "Alok's Favorite Shirt", tempRange: 50...80, category: .top, img: Image(systemName: "photo")),
-        ClothingItem(name: "Alok's Favorite Shorts", tempRange: 40...60, category: .bottom, img: Image(systemName: "photo"))
+        ClothingItem(name: "Alok's Favorite Shirt", tempRange: 50...80,
+                     category: .top, img: Image("top"), clean: true),
+        ClothingItem(name: "Alok's Favorite Shorts", tempRange: 40...60,
+                     category: .bottom, img: Image("bottom"), clean: false, lastWornOn: Date())
     ]
 }

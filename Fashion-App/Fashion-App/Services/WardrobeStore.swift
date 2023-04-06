@@ -17,4 +17,14 @@ class WardrobeStore: ObservableObject {
             clothes.remove(at: index)
         }
     }
+    
+    func cleanAllClothes(){
+        for index in (0 ..< clothes.count) {
+            clothes[index].clean = true
+        }
+    }
+    
+    func getDirtyClothes() -> [ClothingItem] {
+        return clothes.filter{ $0.clean == false }
+    }
 }
