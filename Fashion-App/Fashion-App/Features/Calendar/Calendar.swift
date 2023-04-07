@@ -3,6 +3,9 @@ import SwiftUI
 struct Calendar: View {
     
     @State private var date = Date()
+    @State var isPresentingTopForm: Bool = false
+    @State var isPresentingBottomsForm: Bool = false
+    @State var newClothingFormData = ClothingItem.FormData()
     
     var dateClosedRange: ClosedRange<Date> {
         let min = Date()
@@ -23,22 +26,66 @@ struct Calendar: View {
                 //generate rest of week
                 
                 //shirt picker
-                Text("\(date.formatted(.dateTime.day().month(.wide).weekday(.wide)))")
+                Text("Outfit for \(date.formatted(.dateTime.day().month(.wide).weekday(.wide)))")
                     .padding()
                 
                 HStack {
                     Image(systemName: "tshirt.fill")
-                    Text("shirt")
+                    Text("Top")
                         .padding()
+                    Button("Edit") { isPresentingTopForm.toggle() }
+                    
                 }
                 
                 //bottoms picker
                 HStack {
+                    
                     Image(systemName: "tshirt.fill")
-                    Text("bottoms")
+                    Text("Bottoms")
                         .padding()
+                    Button("Edit") { isPresentingBottomsForm.toggle() }
                 }
                 
+            }
+            
+            .sheet(isPresented: $isPresentingTopForm) {
+              NavigationStack {
+                SelectTopForm(data: $newClothingFormData)
+                  .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                      Button("Cancel") { isPresentingTopForm = false }
+                      
+                    }
+//                    ToolbarItem(placement: .navigationBarTrailing) {
+//                      Button("Save") {
+//                        let newMovie = Movie.create(from: newMovieFormData)
+//                        movieStore.createMovie(newMovie)
+//                        isPresentingMovieForm = false
+//                      }
+//                    }
+                  }
+              }
+              .padding()
+            }
+            
+            .sheet(isPresented: $isPresentingBottomsForm) {
+              NavigationStack {
+                SelectBottomForm(data: $newClothingFormData)
+                  .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                      Button("Cancel") { isPresentingBottomsForm = false }
+                      
+                    }
+//                    ToolbarItem(placement: .navigationBarTrailing) {
+//                      Button("Save") {
+//                        let newMovie = Movie.create(from: newMovieFormData)
+//                        movieStore.createMovie(newMovie)
+//                        isPresentingMovieForm = false
+//                      }
+//                    }
+                  }
+              }
+              .padding()
             }
             //.navigationTitle(date)
         }
