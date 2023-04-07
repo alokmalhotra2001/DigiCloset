@@ -60,7 +60,7 @@ struct Calendar: View {
 //                      Button("Save") {
 //                        let newMovie = Movie.create(from: newMovieFormData)
 //                        movieStore.createMovie(newMovie)
-//                        isPresentingMovieForm = false
+//                        isPresentingBottomsForm = false
 //                      }
 //                    }
                   }
@@ -80,7 +80,7 @@ struct Calendar: View {
 //                      Button("Save") {
 //                        let newMovie = Movie.create(from: newMovieFormData)
 //                        movieStore.createMovie(newMovie)
-//                        isPresentingMovieForm = false
+//                        isPresentingBottomsForm = false
 //                      }
 //                    }
                   }
