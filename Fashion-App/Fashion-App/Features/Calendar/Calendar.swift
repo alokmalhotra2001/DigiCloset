@@ -25,16 +25,24 @@ struct Calendar: View {
                 
                 //generate rest of week
                 
-                //shirt picker
+                
                 Text("Outfit for \(date.formatted(.dateTime.day().month(.wide).weekday(.wide)))")
                     .padding()
                 
+                //shirt picker
                 HStack {
                     Image(systemName: "tshirt.fill")
                     Text("Top")
                         .padding()
-                    Button("Edit") { isPresentingTopForm.toggle() }
-                    
+                    Button {
+                        isPresentingTopForm.toggle()
+                    } label: {
+                        Image(systemName: "square.and.pencil.circle")
+                            .resizable()
+                            .frame(maxWidth: 30, maxHeight: 30)
+                            .foregroundColor(.blue)
+                    }
+                    .buttonStyle(PlainButtonStyle())
                 }
                 
                 //bottoms picker
@@ -43,7 +51,15 @@ struct Calendar: View {
                     Image(systemName: "tshirt.fill")
                     Text("Bottoms")
                         .padding()
-                    Button("Edit") { isPresentingBottomsForm.toggle() }
+                    Button {
+                        isPresentingBottomsForm.toggle()
+                    } label: {
+                        Image(systemName: "square.and.pencil.circle")
+                            .resizable()
+                            .frame(maxWidth: 30, maxHeight: 30)
+                            .foregroundColor(.blue)
+                    }
+                    .buttonStyle(PlainButtonStyle())
                 }
                 
             }
