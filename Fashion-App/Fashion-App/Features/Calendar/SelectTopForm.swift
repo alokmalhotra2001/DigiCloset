@@ -7,7 +7,9 @@ struct SelectTopForm: View {
     
     var body: some View {
         LazyVGrid(columns: threeColumnGrid) {
-            ForEach($wardrobeStore.clothes) { $clothingItem in
+            ForEach($wardrobeStore.clothes
+                .filter({ $0.category
+                    .wrappedValue == .top})) { $clothingItem in
            SelectTopCell(clothingItem: $clothingItem)
             }
         }
