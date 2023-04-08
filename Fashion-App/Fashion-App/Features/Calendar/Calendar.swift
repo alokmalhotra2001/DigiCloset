@@ -33,6 +33,8 @@ struct Calendar: View {
                 //shirt picker
                 HStack {
                     Image(systemName: "tshirt.fill")
+                        .resizable()
+                        .frame(maxWidth: 45, maxHeight: 45)
                     Text("Top")
                         .padding()
                     Button {
@@ -49,7 +51,9 @@ struct Calendar: View {
                 //bottoms picker
                 HStack {
                     
-                    Image(systemName: "tshirt.fill")
+                    Image("bottom")
+                        .resizable()
+                        .frame(maxWidth: 65, maxHeight: 65)
                     Text("Bottoms")
                         .padding()
                     Button {
