@@ -2,6 +2,7 @@ import SwiftUI
 
 struct Calendar: View {
     
+    @EnvironmentObject var wardrobeStore: WardrobeStore
     @State private var date = Date()
     @State var isPresentingTopForm: Bool = false
     @State var isPresentingBottomsForm: Bool = false
@@ -66,19 +67,19 @@ struct Calendar: View {
             
             .sheet(isPresented: $isPresentingTopForm) {
               NavigationStack {
-                SelectTopForm(data: $newClothingFormData)
+                SelectTopForm()
                   .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                       Button("Cancel") { isPresentingTopForm = false }
                       
                     }
-//                    ToolbarItem(placement: .navigationBarTrailing) {
-//                      Button("Save") {
-//                        let newMovie = Movie.create(from: newMovieFormData)
-//                        movieStore.createMovie(newMovie)
-//                        isPresentingBottomsForm = false
-//                      }
-//                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                      Button("Save") {
+                        //let newMovie = Movie.create(from: newMovieFormData)
+                        //movieStore.createMovie(newMovie)
+                        isPresentingTopForm = false
+                      }
+                    }
                   }
               }
               .padding()
@@ -86,19 +87,19 @@ struct Calendar: View {
             
             .sheet(isPresented: $isPresentingBottomsForm) {
               NavigationStack {
-                SelectBottomForm(data: $newClothingFormData)
+                SelectBottomForm()
                   .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                       Button("Cancel") { isPresentingBottomsForm = false }
-                      
+
                     }
-//                    ToolbarItem(placement: .navigationBarTrailing) {
-//                      Button("Save") {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                      Button("Save") {
 //                        let newMovie = Movie.create(from: newMovieFormData)
 //                        movieStore.createMovie(newMovie)
-//                        isPresentingBottomsForm = false
-//                      }
-//                    }
+                        isPresentingBottomsForm = false
+                      }
+                    }
                   }
               }
               .padding()
