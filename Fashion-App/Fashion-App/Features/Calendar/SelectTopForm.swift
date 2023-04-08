@@ -23,10 +23,13 @@ struct SelectTopCell: View {
     
     var body: some View {
             VStack {
-                clothingItem.img
-                    .resizable()
-                    .scaledToFit()
-                    //.frame(maxWidth: 100, maxHeight: 100)
+                Button {
+                } label: {
+                    clothingItem.img
+                        .resizable()
+                        .scaledToFit()
+                        //.frame(maxWidth: 100, maxHeight: 100)
+                }
             }
             Spacer()
     }
