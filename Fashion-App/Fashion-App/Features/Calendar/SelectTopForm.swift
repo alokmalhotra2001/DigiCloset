@@ -3,25 +3,30 @@ import SwiftUI
 struct SelectTopForm: View {
     @EnvironmentObject var wardrobeStore: WardrobeStore
     
+    var threeColumnGrid = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+    
     var body: some View {
-        List($wardrobeStore.clothes) { $clothingItem in SelectTopRow(clothingItem: $clothingItem)
+        LazyVGrid(columns: threeColumnGrid) {
+            ForEach($wardrobeStore.clothes) { $clothingItem in
+           SelectTopCell(clothingItem: $clothingItem)
+            }
         }
         .navigationTitle("Tops")
     }
 }
 
-struct SelectTopRow: View {
+struct SelectTopCell: View {
     @Binding var clothingItem: ClothingItem
     @EnvironmentObject var wardrobeStore: WardrobeStore
     
     var body: some View {
-        HStack(alignment: .center) {
-            
-            VStack(alignment: .leading) {
-                Text(clothingItem.name).fontWeight(.semibold)
+            VStack {
+                clothingItem.img
+                    .resizable()
+                    .scaledToFit()
+                    //.frame(maxWidth: 100, maxHeight: 100)
             }
             Spacer()
-        }
     }
 }
 

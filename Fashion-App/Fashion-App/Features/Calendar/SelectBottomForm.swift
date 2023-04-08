@@ -3,24 +3,28 @@ import SwiftUI
 struct SelectBottomForm: View {
     @EnvironmentObject var wardrobeStore: WardrobeStore
     
+    var threeColumnGrid = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+    
     var body: some View {
-        List($wardrobeStore.clothes) { $clothingItem in SelectBottomRow(clothingItem: $clothingItem)
+        LazyVGrid(columns: threeColumnGrid) {
+            ForEach($wardrobeStore.clothes) { $clothingItem in
+           SelectBottomCell(clothingItem: $clothingItem)
+            }
         }
         .navigationTitle("Bottoms")
     }
 }
 
-struct SelectBottomRow: View {
+struct SelectBottomCell: View {
     @Binding var clothingItem: ClothingItem
     @EnvironmentObject var wardrobeStore: WardrobeStore
     
     var body: some View {
-        HStack(alignment: .center) {
-            
-            VStack(alignment: .leading) {
-                Text(clothingItem.name).fontWeight(.semibold)
-            }
-            Spacer()
+        VStack {
+            clothingItem.img
+                .resizable()
+                .scaledToFit()
+                //.frame(maxWidth: 100, maxHeight: 100)
         }
     }
 }
