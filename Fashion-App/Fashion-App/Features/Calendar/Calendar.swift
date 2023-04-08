@@ -9,7 +9,7 @@ struct Calendar: View {
     
     var dateClosedRange: ClosedRange<Date> {
         let min = Date()
-        let max = Date.now.addingTimeInterval(60*60*24*7)
+        let max = Date.now.addingTimeInterval(60*60*24*5)
         return min...max
     }
     
