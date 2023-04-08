@@ -22,6 +22,8 @@
 		4EE92C4629D489890056B868 /* Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE92C4529D489890056B868 /* Today.swift */; };
 		4EE92C4829D4898F0056B868 /* Donate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE92C4729D4898F0056B868 /* Donate.swift */; };
 		4EE92C4A29D48F2C0056B868 /* ClothingItemForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE92C4929D48F2C0056B868 /* ClothingItemForm.swift */; };
+		9FE6858429DE3D9A00A49F8D /* SelectTopForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE6858329DE3D9A00A49F8D /* SelectTopForm.swift */; };
+		9FE6858629DE3DA400A49F8D /* SelectBottomForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE6858529DE3DA400A49F8D /* SelectBottomForm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +43,8 @@
 		4EE92C4529D489890056B868 /* Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Today.swift; sourceTree = "<group>"; };
 		4EE92C4729D4898F0056B868 /* Donate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Donate.swift; sourceTree = "<group>"; };
 		4EE92C4929D48F2C0056B868 /* ClothingItemForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingItemForm.swift; sourceTree = "<group>"; };
+		9FE6858329DE3D9A00A49F8D /* SelectTopForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTopForm.swift; sourceTree = "<group>"; };
+		9FE6858529DE3DA400A49F8D /* SelectBottomForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectBottomForm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,8 @@
 			isa = PBXGroup;
 			children = (
 				4EE92C4329D489800056B868 /* Calendar.swift */,
+				9FE6858329DE3D9A00A49F8D /* SelectTopForm.swift */,
+				9FE6858529DE3DA400A49F8D /* SelectBottomForm.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -252,9 +258,11 @@
 			files = (
 				4E181CCE29DA215600A5A49F /* RangedSliderView.swift in Sources */,
 				4EE92C4A29D48F2C0056B868 /* ClothingItemForm.swift in Sources */,
+				9FE6858429DE3D9A00A49F8D /* SelectTopForm.swift in Sources */,
 				4EE92C3C29D488D30056B868 /* TabContainer.swift in Sources */,
 				4E181CA929D7365B00A5A49F /* ClothingItem.swift in Sources */,
 				4EE92C3E29D488FE0056B868 /* APIError.swift in Sources */,
+				9FE6858629DE3DA400A49F8D /* SelectBottomForm.swift in Sources */,
 				4E181CAB29D756D700A5A49F /* WardrobeStore.swift in Sources */,
 				4EE92C4829D4898F0056B868 /* Donate.swift in Sources */,
 				4EE92C4229D489760056B868 /* MyCloset.swift in Sources */,
