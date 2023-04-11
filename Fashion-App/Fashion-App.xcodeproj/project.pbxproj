@@ -134,6 +134,8 @@
 			isa = PBXGroup;
 			children = (
 				4EE92C4329D489800056B868 /* Calendar.swift */,
+				9FE6858329DE3D9A00A49F8D /* SelectTopForm.swift */,
+				9FE6858529DE3DA400A49F8D /* SelectBottomForm.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -291,12 +293,14 @@
 				4E194F4929E1E35600E47152 /* TempView.swift in Sources */,
 				4E181CCE29DA215600A5A49F /* RangedSliderView.swift in Sources */,
 				4EE92C4A29D48F2C0056B868 /* ClothingItemForm.swift in Sources */,
+				9FE6858429DE3D9A00A49F8D /* SelectTopForm.swift in Sources */,
 				4EE92C3C29D488D30056B868 /* TabContainer.swift in Sources */,
 				4EFD846F29DF752300E31064 /* NumberFormatter.swift in Sources */,
 				4E194F4529E1E28A00E47152 /* TodayDetail.swift in Sources */,
 				4E587D9929E50436008DC5F0 /* ClothingImageView.swift in Sources */,
 				4E181CA929D7365B00A5A49F /* ClothingItem.swift in Sources */,
 				4EE92C3E29D488FE0056B868 /* APIError.swift in Sources */,
+				9FE6858629DE3DA400A49F8D /* SelectBottomForm.swift in Sources */,
 				4E181CAB29D756D700A5A49F /* WardrobeStore.swift in Sources */,
 				4EE92C4829D4898F0056B868 /* Donate.swift in Sources */,
 				4EE92C4229D489760056B868 /* MyCloset.swift in Sources */,
