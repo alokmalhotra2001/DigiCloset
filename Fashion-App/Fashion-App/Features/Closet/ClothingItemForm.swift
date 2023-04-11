@@ -11,7 +11,7 @@ struct ClothingForm: View {
             Section(header: Text("Basic Clothing Info")) {
                 TextField("Title", text: $data.name)
                 Picker("Category", selection: $data.category) {
-                    ForEach(ClothingItem.Category.allCases) {
+                    ForEach(Category.allCases) {
                         category in Text(category.rawValue.capitalized)
                     }
                 }

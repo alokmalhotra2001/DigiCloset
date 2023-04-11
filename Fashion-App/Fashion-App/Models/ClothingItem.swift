@@ -8,27 +8,19 @@ struct ClothingItem: Identifiable {
     var tempRange: ClosedRange<Int>
     var category: Category
     var img: Image
-    
-    // var state: State
-    // var lastWornOn: Date? = nil
-    
-    
-    enum Category: String, CaseIterable, Identifiable {
-        var id: Self { self }
-        case top
-        case bottom
-    }
-    
-    enum State: String, CaseIterable, Identifiable {
-        var id: Self { self }
-        case clean
-        case dirty
-    }
-    
-    // Inclusive
-    func getAllInCategory(cat: Category, clothes: [ClothingItem]) -> [ClothingItem] {
-        return clothes.filter{ $0.category == cat }
-    }
+    var clean: Bool
+    var lastWornOn: Date? = nil
+}
+
+enum Category: String, CaseIterable, Identifiable {
+    var id: Self { self }
+    case top
+    case bottom
+}
+
+// Inclusive
+func getAllInCategory(cat: Category, clothes: [ClothingItem]) -> [ClothingItem] {
+    return clothes.filter{ $0.category == cat }
 }
 
 // Inclusive
@@ -53,6 +45,15 @@ func printClothingItemInfo(item: ClothingItem) {
     print(item.category.rawValue)
 }
 
+func sortByTempDiff(i1: ClothingItem, i2: ClothingItem, currWeather: CurrentWeather) -> Bool {
+    let currTemp = currWeather.data.temp
+    let i1LBD = abs(Double(i1.tempRange.lowerBound) - currTemp)
+    let i1UPD = abs(Double(i1.tempRange.upperBound) - currTemp)
+    let i2LBD = abs(Double(i2.tempRange.lowerBound) - currTemp)
+    let i2UPD = abs(Double(i2.tempRange.upperBound) - currTemp)
+    return (i1LBD + i1UPD <= i2LBD + i2UPD)
+}
+
 extension ClothingItem {
     struct FormData {
         var name: String = ""
@@ -67,7 +68,7 @@ extension ClothingItem {
     
     static func create(from formData: FormData) -> ClothingItem {
         let clothingItem = ClothingItem(name: formData.name, tempRange: formData.tempRange,
-                                        category: formData.category, img: formData.img)
+                                        category: formData.category, img: formData.img, clean: true)
         return ClothingItem.update(clothingItem, from: formData)
     }
     
@@ -83,7 +84,9 @@ extension ClothingItem {
 
 extension ClothingItem {
     static let previewData: [ClothingItem] = [
-        ClothingItem(name: "Alok's Favorite Shirt", tempRange: 50...80, category: .top, img: Image(systemName: "photo")),
-        ClothingItem(name: "Alok's Favorite Shorts", tempRange: 40...60, category: .bottom, img: Image(systemName: "photo"))
+        ClothingItem(name: "Alok's Favorite Shirt", tempRange: 50...80,
+                     category: .top, img: Image(systemName: "photo"), clean: true),
+        ClothingItem(name: "Alok's Favorite Shorts", tempRange: 40...60,
+                     category: .bottom, img: Image(systemName: "photo"), clean: true)
     ]
 }

@@ -17,4 +17,8 @@ class WardrobeStore: ObservableObject {
             clothes.remove(at: index)
         }
     }
+    
+    func getCleanTops() -> [ClothingItem] { return clothes.filter{ $0.category == .top && $0.clean == true } }
+    
+    func getCleanBottoms() -> [ClothingItem] { return clothes.filter{ $0.category == .bottom && $0.clean == true } }
 }
