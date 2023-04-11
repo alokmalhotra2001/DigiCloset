@@ -2,21 +2,17 @@ import SwiftUI
 
 @main
 struct Fashion_AppApp: App {
+    
     @StateObject var wardrobeStore = WardrobeStore()
+    @StateObject var forecastLoader = ForecastLoader(apiClient: WeatherAPIClient())
+    @StateObject var currentConditionsLoader = CurrentConditionsLoader(apiClient: WeatherAPIClient())
     
     var body: some Scene {
         WindowGroup {
-            TabContainer().environmentObject(wardrobeStore)
+            LocationRequestView()
+                .environmentObject(wardrobeStore)
+                .environmentObject(forecastLoader)
+                .environmentObject(currentConditionsLoader)
         }
     }
 }
-
-//@main
-//struct midtermApp: App {
-//    @StateObject var synopsisLoader = SynopsisLoader( apiClient: OpenLibraryAPIClient() )
-//    @StateObject var dataStore = DataStore()
-//
-//    var body: some Scene {
-//        WindowGroup { TabContainer().environmentObject(synopsisLoader).environmentObject(dataStore) }
-//    }
-// }

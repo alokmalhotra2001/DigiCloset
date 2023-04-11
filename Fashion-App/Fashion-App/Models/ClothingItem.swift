@@ -10,23 +10,17 @@ struct ClothingItem: Identifiable {
     var img: Image
     var clean: Bool
     var lastWornOn: Date? = nil
-    
-    enum Category: String, CaseIterable, Identifiable {
-        var id: Self { self }
-        case top
-        case bottom
-    }
-    
-    enum State: String, CaseIterable, Identifiable {
-        var id: Self { self }
-        case clean
-        case dirty
-    }
-    
-    // Inclusive
-    func getAllInCategory(cat: Category, clothes: [ClothingItem]) -> [ClothingItem] {
-        return clothes.filter{ $0.category == cat }
-    }
+}
+
+enum Category: String, CaseIterable, Identifiable {
+    var id: Self { self }
+    case top
+    case bottom
+}
+
+// Inclusive
+func getAllInCategory(cat: Category, clothes: [ClothingItem]) -> [ClothingItem] {
+    return clothes.filter{ $0.category == cat }
 }
 
 // Inclusive
@@ -51,10 +45,13 @@ func printClothingItemInfo(item: ClothingItem) {
     print(item.category.rawValue)
 }
 
-func dateToString(date: Date) -> String {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "MM/dd/YY"
-    return dateFormatter.string(from: date)
+func sortByTempDiff(i1: ClothingItem, i2: ClothingItem, currWeather: CurrentWeather) -> Bool {
+    let currTemp = currWeather.data.temp
+    let i1LBD = abs(Double(i1.tempRange.lowerBound) - currTemp)
+    let i1UPD = abs(Double(i1.tempRange.upperBound) - currTemp)
+    let i2LBD = abs(Double(i2.tempRange.lowerBound) - currTemp)
+    let i2UPD = abs(Double(i2.tempRange.upperBound) - currTemp)
+    return (i1LBD + i1UPD <= i2LBD + i2UPD)
 }
 
 extension ClothingItem {
@@ -88,8 +85,8 @@ extension ClothingItem {
 extension ClothingItem {
     static let previewData: [ClothingItem] = [
         ClothingItem(name: "Alok's Favorite Shirt", tempRange: 50...80,
-                     category: .top, img: Image("top"), clean: true),
+                     category: .top, img: Image(systemName: "photo"), clean: true),
         ClothingItem(name: "Alok's Favorite Shorts", tempRange: 40...60,
-                     category: .bottom, img: Image("bottom"), clean: false, lastWornOn: Date())
+                     category: .bottom, img: Image(systemName: "photo"), clean: true)
     ]
 }
