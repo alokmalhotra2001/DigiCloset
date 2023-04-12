@@ -1,18 +1,18 @@
-//
-//  Fashion_AppApp.swift
-//  Fashion-App
-//
-//  Created by Alexandra Rivera on 3/29/23.
-//
-
 import SwiftUI
 
 @main
 struct Fashion_AppApp: App {
+    
+    @StateObject var wardrobeStore = WardrobeStore()
+    @StateObject var forecastLoader = ForecastLoader(apiClient: WeatherAPIClient())
+    @StateObject var currentConditionsLoader = CurrentConditionsLoader(apiClient: WeatherAPIClient())
+    
     var body: some Scene {
         WindowGroup {
-            // TabContainer()
-          ContentView()
+            LocationRequestView()
+                .environmentObject(wardrobeStore)
+                .environmentObject(forecastLoader)
+                .environmentObject(currentConditionsLoader)
         }
     }
 }
