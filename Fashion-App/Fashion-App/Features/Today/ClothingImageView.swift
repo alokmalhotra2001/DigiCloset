@@ -12,7 +12,7 @@ struct ClothingImageView: View {
                 .resizable()
                 .scaledToFit()
                 .aspectRatio(contentMode: .fill)
-                .frame(maxWidth: 225, maxHeight: 225)
+                .frame(maxWidth: 225, maxHeight: 275)
                 .foregroundColor(.black)
                 .clipped()
                 .cornerRadius(16)
