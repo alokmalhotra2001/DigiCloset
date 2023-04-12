@@ -54,6 +54,12 @@ func sortByTempDiff(i1: ClothingItem, i2: ClothingItem, currWeather: CurrentWeat
     return (i1LBD + i1UPD <= i2LBD + i2UPD)
 }
 
+func dateToString(date: Date) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "MM/dd/YY"
+    return dateFormatter.string(from: date)
+}
+
 extension ClothingItem {
     struct FormData {
         var name: String = ""
@@ -85,8 +91,8 @@ extension ClothingItem {
 extension ClothingItem {
     static let previewData: [ClothingItem] = [
         ClothingItem(name: "Alok's Favorite Shirt", tempRange: 50...80,
-                     category: .top, img: Image(systemName: "photo"), clean: true),
+                     category: .top, img: Image("top"), clean: true),
         ClothingItem(name: "Alok's Favorite Shorts", tempRange: 40...60,
-                     category: .bottom, img: Image(systemName: "photo"), clean: true)
+                     category: .bottom, img: Image("bottom"), clean: false, lastWornOn: Date())
     ]
 }

@@ -34,6 +34,8 @@
 		4EFD846B29DF6B6900E31064 /* ForecastLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFD846A29DF6B6900E31064 /* ForecastLoader.swift */; };
 		4EFD846D29DF6D4B00E31064 /* CurrentConditionsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFD846C29DF6D4B00E31064 /* CurrentConditionsLoader.swift */; };
 		4EFD846F29DF752300E31064 /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFD846E29DF752300E31064 /* NumberFormatter.swift */; };
+		9FE6858429DE3D9A00A49F8D /* SelectTopForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE6858329DE3D9A00A49F8D /* SelectTopForm.swift */; };
+		9FE6858629DE3DA400A49F8D /* SelectBottomForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE6858529DE3DA400A49F8D /* SelectBottomForm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		4EFD846A29DF6B6900E31064 /* ForecastLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastLoader.swift; sourceTree = "<group>"; };
 		4EFD846C29DF6D4B00E31064 /* CurrentConditionsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentConditionsLoader.swift; sourceTree = "<group>"; };
 		4EFD846E29DF752300E31064 /* NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
+		9FE6858329DE3D9A00A49F8D /* SelectTopForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTopForm.swift; sourceTree = "<group>"; };
+		9FE6858529DE3DA400A49F8D /* SelectBottomForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectBottomForm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
