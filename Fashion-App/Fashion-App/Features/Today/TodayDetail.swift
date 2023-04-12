@@ -59,7 +59,8 @@ struct TodayDetail: View {
                         Alert(title: Text("Confirm selection?"),
                               message: Text("Boutta be lookin' sexy!"),
                               primaryButton: .destructive(Text("Confirm")) {
-                                // Insert notification logic here
+                                let notif: Notification = Notification(top: tops[currTopIndex], bottom: bottoms[currBottomIndex])
+                                wardrobeStore.addNotification(notif: notif)
                                 selectionConfirmed = true
                               },
                               secondaryButton: .cancel())

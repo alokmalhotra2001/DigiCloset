@@ -105,6 +105,6 @@ extension ClothingItem {
         ClothingItem(name: "Deeya's Favorite Cargo Pants", tempRange: 30...40,
                      category: .bottom, img: Image("deeyacargopants"), clean: true),
         ClothingItem(name: "Deeya's Favorite Crop Top", tempRange: 30...40,
-                     category: .top, img: Image("deeyacroptop"), clean: false)
+                     category: .top, img: Image("deeyacroptop"), clean: false, lastWornOn: Date())
     ]
 }

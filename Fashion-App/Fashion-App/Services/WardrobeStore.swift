@@ -3,8 +3,10 @@ import SwiftUI
 class WardrobeStore: ObservableObject {
     
     @Published var clothes: [ClothingItem] = ClothingItem.previewData // starting state
+    @Published var notifications: [Notification] = Notification.previewData
     
     func addClothingItem(_ clothingItem: ClothingItem) { clothes.append(clothingItem) }
+    func addNotification(notif: Notification) {notifications.append(notif)}
     
     func updateClothingItem(_ clothingItem: ClothingItem) {
         if let index = clothes.firstIndex(where: { $0.id == clothingItem.id }) {
