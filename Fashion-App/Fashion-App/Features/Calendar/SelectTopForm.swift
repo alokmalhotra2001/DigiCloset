@@ -1,37 +1,46 @@
-import Foundation
 import SwiftUI
 
 struct SelectTopForm: View {
+    @EnvironmentObject var wardrobeStore: WardrobeStore
     
-    @Binding var data: ClothingItem.FormData
-    //let tops = getAllInCategory(cat: Category.top, clothes: data)
+    var threeColumnGrid = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
-        ScrollView {
-            
-            //title for form: Choose Top for (insert date)
-            Text("Choose Top")
-            
-            //low temp, high temp, description of weather
-            
-            //dataset = all clothing filtered for tops, sorted by cleanliness
-            //getAllInCategory(cat: top, clothes: data)
-            //ForEach()
-            
-            //each top in an hstack
-                //image of top
-                //date last worn
-                //clean or dirty (cannot select if dirty)
-                //button to select (can only select 1 maximum)
+        LazyVGrid(columns: threeColumnGrid) {
+            ForEach($wardrobeStore.clothes
+                .filter({ $0.category
+                    .wrappedValue == .top})) { $clothingItem in
+           SelectTopCell(clothingItem: $clothingItem)
+            }
         }
+        .navigationTitle("Tops")
     }
-    
-    
 }
 
-struct SelectTopForm_Previews: PreviewProvider {
-  static var previews: some View {
-      SelectTopForm(data: Binding.constant(ClothingItem.previewData[0].dataForForm))
-  }
+struct SelectTopCell: View {
+    @Binding var clothingItem: ClothingItem
+    @EnvironmentObject var wardrobeStore: WardrobeStore
+    
+    var body: some View {
+            VStack {
+                Button {
+                } label: {
+                    clothingItem.img
+                        .resizable()
+                        .scaledToFit()
+                        //.frame(maxWidth: 100, maxHeight: 100)
+                }
+            }
+            Spacer()
+    }
 }
+
+struct Top_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView { SelectTopForm().environmentObject( WardrobeStore() ) }
+    }
+}
+
+
+
 
