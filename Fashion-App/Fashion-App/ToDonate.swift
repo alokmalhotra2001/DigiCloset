@@ -17,6 +17,8 @@ struct ToDonate: View {
           ScrollView{
             Text("Finalize Clothes to Donate").font(.title).frame(alignment: .top).padding(.top, 30)
             
+            
+            
             NavigationLink(destination: ContentView()) {
               Text("Find Donation Centers Near Me")
             }

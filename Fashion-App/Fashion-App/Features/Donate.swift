@@ -7,17 +7,17 @@ struct Donate: View {
         ScrollView{
           Text("Clean My Closet").font(.title).frame(alignment: .top).padding(.top, 30)
           // images of clothes
-          Image("tshirt").renderingMode(.original).resizable().scaledToFit().frame(maxHeight: 300)
-            .frame(maxWidth: 300).padding(.vertical)
+          Image("tshirt").renderingMode(.original).resizable().scaledToFit().frame(maxHeight: 200)
+            .frame(maxWidth: 200).padding(.vertical)
           HStack(alignment: .top){
             Button("Keep") {
               print("filler") // go to next image
-            }.padding().background(Color(.black)).foregroundColor(.white).clipShape(Capsule()).frame(maxHeight: 200)
-              .frame(maxWidth: 200)
+            }.padding().buttonStyle(.borderedProminent).frame(maxHeight: 200)
+              .frame(maxWidth: 200).tint(.black)
             Button("Donate") {
               print("filler") // add To Donate bag, go to next image //TODO: TEMP -- CHANGE
-            }.padding().background(Color(.black)).foregroundColor(.white).clipShape(Capsule()).frame(maxHeight: 200)
-              .frame(maxWidth: 200)
+            }.padding().buttonStyle(.borderedProminent).frame(maxHeight: 200)
+              .frame(maxWidth: 200).tint(.black)
           }
           // bag icon at bottom "To Donate" --> selected clothes to donate screen --> find nearby donation centers screen
           
@@ -28,5 +28,12 @@ struct Donate: View {
           
         }
       }
+    }
+}
+
+
+struct Donate_Previews: PreviewProvider {
+    static var previews: some View {
+        Donate()
     }
 }
