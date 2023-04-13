@@ -1,3 +1,6 @@
+// MyCloset.swift
+// Written by Alexandra Rivera
+
 import SwiftUI
 
 struct MyCloset: View {

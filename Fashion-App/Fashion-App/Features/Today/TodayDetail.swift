@@ -50,7 +50,7 @@ struct TodayDetail: View {
                         Alert(title: Text("Undo selection?"),
                               message: Text("Choose a different combination!"),
                               primaryButton: .destructive(Text("Confirm")) {
-                                // Insert notification logic here
+                                wardrobeStore.removeLastNotification()
                                 selectionConfirmed = false
                               },
                               secondaryButton: .cancel())
@@ -59,7 +59,8 @@ struct TodayDetail: View {
                         Alert(title: Text("Confirm selection?"),
                               message: Text("Boutta be lookin' sexy!"),
                               primaryButton: .destructive(Text("Confirm")) {
-                                // Insert notification logic here
+                                let notif: Notification = Notification(top: tops[currTopIndex], bottom: bottoms[currBottomIndex], timestamp: Date.now)
+                                wardrobeStore.addNotification(notif: notif)
                                 selectionConfirmed = true
                               },
                               secondaryButton: .cancel())
@@ -75,9 +76,9 @@ struct TodayDetail: View {
         .offset(y: 15)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    
-                } label: { Image(systemName: "envelope.fill") }
+                NavigationLink {
+                    NotificationsView()
+                } label: { wardrobeStore.getNotifications().isEmpty ? Image(systemName: "envelope") : Image(systemName: "envelope.fill") }
             }
             ToolbarItem(placement: .principal) {
                 VStack {
