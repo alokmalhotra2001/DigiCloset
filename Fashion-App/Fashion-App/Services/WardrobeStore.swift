@@ -3,6 +3,8 @@ import SwiftUI
 class WardrobeStore: ObservableObject {
     
     @Published var clothes: [ClothingItem] = ClothingItem.previewData // starting state
+    @Published var clothes_to_donate: [ClothingItem] = ClothingItem.previewData // starting state
+    @Published var finalized_donate: [ClothingItem] = ClothingItem.previewData // starting state
     
     func addClothingItem(_ clothingItem: ClothingItem) { clothes.append(clothingItem) }
     

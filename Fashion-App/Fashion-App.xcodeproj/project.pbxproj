@@ -43,6 +43,8 @@
 		4EFD846F29DF752300E31064 /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFD846E29DF752300E31064 /* NumberFormatter.swift */; };
 		9FE6858429DE3D9A00A49F8D /* SelectTopForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE6858329DE3D9A00A49F8D /* SelectTopForm.swift */; };
 		9FE6858629DE3DA400A49F8D /* SelectBottomForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE6858529DE3DA400A49F8D /* SelectBottomForm.swift */; };
+		EBD63D6E29E7B1A900F08BB1 /* SelectDonate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD63D6D29E7B1A900F08BB1 /* SelectDonate.swift */; };
+		EBD63D7029E7CF5700F08BB1 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD63D6F29E7CF5700F08BB1 /* Test.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +86,8 @@
 		4EFD846E29DF752300E31064 /* NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
 		9FE6858329DE3D9A00A49F8D /* SelectTopForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTopForm.swift; sourceTree = "<group>"; };
 		9FE6858529DE3DA400A49F8D /* SelectBottomForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectBottomForm.swift; sourceTree = "<group>"; };
+		EBD63D6D29E7B1A900F08BB1 /* SelectDonate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDonate.swift; sourceTree = "<group>"; };
+		EBD63D6F29E7CF5700F08BB1 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,7 +178,9 @@
 			isa = PBXGroup;
 			children = (
 				4EE92C4729D4898F0056B868 /* Donate.swift */,
+				EBD63D6F29E7CF5700F08BB1 /* Test.swift */,
 				4275162B29E63BE600EE2D9F /* ToDonate.swift */,
+				EBD63D6D29E7B1A900F08BB1 /* SelectDonate.swift */,
 				4275162D29E63C6900EE2D9F /* LandmarkAnnotation.swift */,
 				4275162F29E63C7E00EE2D9F /* Landmark.swift */,
 				4275163129E63CB400EE2D9F /* ContentView.swift */,
@@ -325,6 +331,7 @@
 				4E194F4529E1E28A00E47152 /* TodayDetail.swift in Sources */,
 				4E587D9929E50436008DC5F0 /* ClothingImageView.swift in Sources */,
 				4E181CA929D7365B00A5A49F /* ClothingItem.swift in Sources */,
+				EBD63D6E29E7B1A900F08BB1 /* SelectDonate.swift in Sources */,
 				4EE92C3E29D488FE0056B868 /* APIError.swift in Sources */,
 				9FE6858629DE3DA400A49F8D /* SelectBottomForm.swift in Sources */,
 				4275163229E63CB400EE2D9F /* ContentView.swift in Sources */,
@@ -343,6 +350,7 @@
 				4EE92C4429D489800056B868 /* Calendar.swift in Sources */,
 				4EE92C4629D489890056B868 /* Today.swift in Sources */,
 				4E587D9B29E5A9CA008DC5F0 /* LocationManager.swift in Sources */,
+				EBD63D7029E7CF5700F08BB1 /* Test.swift in Sources */,
 				4275163629E63CEA00EE2D9F /* PlaceListView.swift in Sources */,
 				4E587D9D29E5AC71008DC5F0 /* LocationAccessView.swift in Sources */,
 				4EFD846D29DF6D4B00E31064 /* CurrentConditionsLoader.swift in Sources */,

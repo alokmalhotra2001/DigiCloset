@@ -18,14 +18,13 @@ struct ToDonate: View {
             
             
             
+            
+            
+            
             NavigationLink(destination: ContentView()) {
               Text("Find Donation Centers Near Me")
             }
             
-  //          Button("Find Donation Centers Near Me") {
-  //            NavigationLink(<#LocalizedStringKey#>, destination: ContentView())
-  //          }.padding().background(Color(.black)).foregroundColor(.white).clipShape(Capsule()).frame(maxHeight: 200)
-  //            .frame(maxWidth: 200).frame(alignment: .bottom)
           }
         }
         

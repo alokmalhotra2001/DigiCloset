@@ -10,20 +10,19 @@ struct Donate: View {
           Image("tshirt").renderingMode(.original).resizable().scaledToFit().frame(maxHeight: 200)
             .frame(maxWidth: 200).padding(.vertical)
           HStack(alignment: .top){
-            Button("Keep") {
-              print("filler") // go to next image
+            Button("Keep") { // remove from to_donate, next image
+              print("filler")
             }.padding().buttonStyle(.borderedProminent).frame(maxHeight: 200)
               .frame(maxWidth: 200).tint(.black)
             Button("Donate") {
-              print("filler") // add To Donate bag, go to next image //TODO: TEMP -- CHANGE
+              print("filler") // remove from to_donate, add to finalized_donate, next image
             }.padding().buttonStyle(.borderedProminent).frame(maxHeight: 200)
               .frame(maxWidth: 200).tint(.black)
           }
-          // bag icon at bottom "To Donate" --> selected clothes to donate screen --> find nearby donation centers screen
           
-          NavigationLink(destination: ToDonate()) {
-            Image("bag").renderingMode(.original).resizable().scaledToFit().frame(maxHeight: 150)
-              .frame(maxWidth: 150).padding(.top, 50)
+          NavigationLink(destination: SelectDonate()) {
+            Image(systemName: "shippingbox").resizable().scaledToFit()
+              .frame(maxWidth: 120, maxHeight: 120).padding(.top, 75)
           }
           
         }
