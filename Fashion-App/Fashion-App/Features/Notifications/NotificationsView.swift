@@ -5,26 +5,22 @@ import SwiftUI
 
 struct NotificationsView: View {
     @EnvironmentObject var wardrobeStore: WardrobeStore
-    @State var isPresentingLaundryAlert: Bool = false
-    
     var body: some View {
-        List($wardrobeStore.notifications) { $notif in NotificationItemRow(notif: $notif)
-        }
-        .navigationTitle("Notifications")
-        .toolbar {
+        VStack{
+            List($wardrobeStore.notifications) { $notif in NotificationItemRow(notif: $notif) }
+            .navigationTitle("Notifications")
+            .toolbar {
+            }
         }
     }
-    //        .sheet(isPresented: $isPresentingClothingForm) {
-    //            NavigationStack {
-    //                    }
-    //                }
-    //            }
-    //            .padding()
 }
 
 struct NotificationItemRow: View {
     @Binding var notif: Notification
     @EnvironmentObject var wardrobeStore: WardrobeStore
+    @State var notifFormData = Notification.FormData()
+    @State var isPresentingNotifForm: Bool = false
+    @State var isPresentingAlert: Bool = false
     
     var body: some View {
         
@@ -33,10 +29,8 @@ struct NotificationItemRow: View {
         
         HStack(alignment: .center) {
             VStack(alignment: .leading){
-                if let lastWorn = topClothingItem.lastWornOn {
-                    Text("Your outfit on \(dateToString(date:lastWorn)):")
-                        .fontWeight(.semibold)
-                }
+                Text("Your outfit on \(dateToString(date:notif.timestamp))")
+                    .fontWeight(.semibold)
                 
                 HStack {
                     topClothingItem.img
@@ -47,10 +41,58 @@ struct NotificationItemRow: View {
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: 55, maxHeight: 55)
+                    Spacer()
                 }
-                
-                Text("Have you put these items in your dirty clothes bin?")
-                    .font(.caption)
+            }
+            
+            Button {
+                isPresentingNotifForm.toggle()
+            } label: {
+                VStack(alignment: .trailing){
+                    Image(systemName: "exclamationmark.triangle")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: 30, maxHeight: 30)
+                        .foregroundColor( notif.completed ? Color.gray : Color.red )
+                    Text( notif.completed ? "action complete" : "action required")
+                        .foregroundColor( notif.completed ? Color.gray : Color.red )
+                }
+            }
+            .buttonStyle(PlainButtonStyle())
+            .disabled(notif.completed)
+
+        }
+        .sheet(isPresented: $isPresentingNotifForm) {
+            NavigationStack {
+                NotificationsForm(data: $notifFormData, notif: notif)
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button("Cancel") {
+                                isPresentingNotifForm = false
+                            }
+                        }
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button("Save") {
+                                isPresentingAlert = true
+                            }
+                            .alert(isPresented: $isPresentingAlert) {
+                                Alert(
+                                    title: Text("Confirm selection?"),
+                                    message: Text("This action cannot be undone!"),
+                                    primaryButton: .destructive(Text("Confirm")) {
+                                        let updatedTop = Notification.updateTop(topClothingItem, from: notifFormData)
+                                        let updatedBottom = Notification.updateBottom(bottomClothingItem, from: notifFormData)
+                                        wardrobeStore.updateClothingItem(updatedTop)
+                                        wardrobeStore.updateClothingItem(updatedBottom)
+                                        notif.completed = true
+                                        isPresentingAlert = false
+                                        isPresentingNotifForm = false
+                                    },
+                                    secondaryButton: .cancel()
+                                )
+                            }
+                        }
+                    }
             }
         }
     }

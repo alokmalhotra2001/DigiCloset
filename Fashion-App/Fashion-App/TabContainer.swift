@@ -8,8 +8,6 @@ struct TabContainer: View {
     
     var body: some View {
         TabView{
-            NavigationView { NotificationsView() }
-                .tabItem { Label("Notifications", systemImage: "envelope.fill") }
             NavigationView { MyCloset() }
                 .tabItem { Label("My Closet", systemImage: "cabinet.fill") }
             NavigationView { Today(location: CLLocationCoordinate2D(latitude: coordinate?.latitude ?? 0, longitude: coordinate?.longitude ?? 0)) }
