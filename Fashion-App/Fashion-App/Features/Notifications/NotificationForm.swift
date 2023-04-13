@@ -33,7 +33,7 @@ struct NotificationsForm: View {
                 Toggle("Moved to the dirty bin", isOn: $data.bottomInDirtyBin).bold()
             }
         }
-        .navigationTitle(Text("Navigation title"))
+        .navigationTitle(Text("Manage your outfit"))
     }
 }
 

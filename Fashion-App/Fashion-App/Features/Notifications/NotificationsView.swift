@@ -80,8 +80,10 @@ struct NotificationItemRow: View {
                                     title: Text("Confirm selection?"),
                                     message: Text("This action cannot be undone!"),
                                     primaryButton: .destructive(Text("Confirm")) {
-                                        let updatedTop = Notification.updateTop(topClothingItem, from: notifFormData)
-                                        let updatedBottom = Notification.updateBottom(bottomClothingItem, from: notifFormData)
+                                        var updatedTop = Notification.updateTop(topClothingItem, from: notifFormData)
+                                        var updatedBottom = Notification.updateBottom(bottomClothingItem, from: notifFormData)
+                                        updatedTop.lastWornOn = Date.now
+                                        updatedBottom.lastWornOn = Date.now
                                         wardrobeStore.updateClothingItem(updatedTop)
                                         wardrobeStore.updateClothingItem(updatedBottom)
                                         notif.completed = true
