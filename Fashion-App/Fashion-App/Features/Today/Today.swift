@@ -3,6 +3,7 @@ import CoreLocation
 
 struct Today: View {
     @EnvironmentObject var currentConditionsLoader: CurrentConditionsLoader
+    @EnvironmentObject var wardrobeStore: WardrobeStore
     let location: CLLocationCoordinate2D
     
     var body: some View {
@@ -15,7 +16,10 @@ struct Today: View {
                 TodayDetail(currWeather: currentConditions)
             }
         }
-        .task { await currentConditionsLoader.loadWeatherData(coordinate: location) }
+        .task { await currentConditionsLoader.loadWeatherData(coordinate: location)
+            
+            if (wardrobeStore.newDay()) { wardrobeStore.resetOutfitSelection() }
+        }
     }
 }
 

@@ -46,7 +46,7 @@ struct TodayDetail: View {
                         .background(.blue)
                         .cornerRadius(8)
                         .alert(isPresented: $isPresentingSelectionAlert) {
-                            !wardrobeStore.newDay() && wardrobeStore.selectionConfirmed ?
+                            wardrobeStore.selectionConfirmed ?
                             
                             Alert(title: Text("Undo selection?"),
                                   message: Text("Choose a different combination!"),

@@ -68,7 +68,7 @@ class WardrobeStore: ObservableObject {
         let dateMostRecent = getMostRecentNotif()
         if ( dateMostRecent != "NO NOTIFS" ) {
             if ( dateToString(date: Date.now) != dateMostRecent ) {
-                resetOutfitSelection()
+                // resetOutfitSelection()
                 return true
             }
         }
