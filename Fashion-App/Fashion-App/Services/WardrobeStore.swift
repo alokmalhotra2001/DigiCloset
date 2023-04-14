@@ -41,4 +41,37 @@ class WardrobeStore: ObservableObject {
     func getNotifications() -> [Notification] {
         return notifications.filter{ $0.completed == false }
     }
+    
+    func getMostRecentNotif() -> String {
+        if (!notifications.isEmpty) { return dateToString(date: notifications[0].timestamp) }
+        return "NO NOTIFS"
+    }
+    
+    // === TODAY === //
+    @Published var todayTop: ClothingItem? = nil
+    @Published var todayBottom: ClothingItem? = nil
+    @Published var selectionConfirmed: Bool = false
+
+    func confirmOutfitSelection(selectedTop: ClothingItem, selectedBottom: ClothingItem) {
+        todayTop = selectedTop
+        todayBottom = selectedBottom
+        selectionConfirmed = true
+    }
+    
+    func resetOutfitSelection() {
+        todayTop = nil
+        todayBottom = nil
+        selectionConfirmed = false
+    }
+    
+    func newDay() -> Bool {
+        let dateMostRecent = getMostRecentNotif()
+        if ( dateMostRecent != "NO NOTIFS" ) {
+            if ( dateToString(date: Date.now) != dateMostRecent ) {
+                resetOutfitSelection()
+                return true
+            }
+        }
+        return false
+    }
 }
