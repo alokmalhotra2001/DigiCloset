@@ -86,11 +86,6 @@ struct NotificationItemRow: View {
                                         updatedBottom.lastWornOn = Date.now
                                         wardrobeStore.updateClothingItem(updatedTop)
                                         wardrobeStore.updateClothingItem(updatedBottom)
-                                        
-                                        if let index = wardrobeStore.notifications.firstIndex(where: { $0.id == notif.id }) {
-                                            if (index == 0) { wardrobeStore.resetOutfitSelection() }
-                                        }
-                                        
                                         notif.completed = true
                                         isPresentingAlert = false
                                         isPresentingNotifForm = false

@@ -3,6 +3,7 @@ import CoreLocation
 
 struct SingleClothingItemView: View {
     @Binding var currIndex: Int
+    @Binding var disabled: Bool
     let currItem: ClothingItem
     let currCat: Category
     let sz: Int
@@ -23,7 +24,7 @@ struct SingleClothingItemView: View {
                     .foregroundColor(.black)
             }
                 .buttonStyle(PlainButtonStyle())
-                .disabled(currIndex == 0 || wardrobeStore.selectionConfirmed)
+                .disabled(currIndex == 0 || disabled)
                 .zIndex(1)
                 
             
@@ -43,7 +44,7 @@ struct SingleClothingItemView: View {
                     .foregroundColor(.black)
             }
                 .buttonStyle(PlainButtonStyle())
-                .disabled(currIndex == sz - 1  || wardrobeStore.selectionConfirmed)
+                .disabled(currIndex == sz - 1  || disabled)
         
             .zIndex(1)
             
