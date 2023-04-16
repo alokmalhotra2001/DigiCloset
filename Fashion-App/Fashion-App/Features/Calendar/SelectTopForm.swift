@@ -1,16 +1,26 @@
 import SwiftUI
+import CoreLocation
 
 struct SelectTopForm: View {
-    @EnvironmentObject var wardrobeStore: WardrobeStore
-    
+    let currWeather: CurrentWeather
     var threeColumnGrid = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+    @EnvironmentObject var wardrobeStore: WardrobeStore
+    @Binding var dict: [Date: ClothingItem]
+    @Binding var selectedDate: Date
     
     var body: some View {
+        
+        Text("\(selectedDate.formatted(.dateTime.day().month(.wide).weekday(.wide)))")
+            .padding()
+            .font(.system(size: 23))
+        
+        TempBox(currWeather: currWeather)
+        
         LazyVGrid(columns: threeColumnGrid) {
             ForEach($wardrobeStore.clothes
                 .filter({ $0.category
                     .wrappedValue == .top})) { $clothingItem in
-           SelectTopCell(clothingItem: $clothingItem)
+                        SelectTopCell(clothingItem: $clothingItem, dict: $dict, selectedDate: $selectedDate)
             }
         }
         .navigationTitle("Tops")
@@ -20,27 +30,20 @@ struct SelectTopForm: View {
 struct SelectTopCell: View {
     @Binding var clothingItem: ClothingItem
     @EnvironmentObject var wardrobeStore: WardrobeStore
+    @Binding var dict: [Date: ClothingItem]
+    @Binding var selectedDate: Date
     
     var body: some View {
             VStack {
                 Button {
+                    dict[selectedDate] = clothingItem
                 } label: {
                     clothingItem.img
                         .resizable()
                         .scaledToFit()
-                        //.frame(maxWidth: 100, maxHeight: 100)
                 }
             }
-            Spacer()
+        
+        Spacer()
     }
 }
-
-struct Top_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView { SelectTopForm().environmentObject( WardrobeStore() ) }
-    }
-}
-
-
-
-

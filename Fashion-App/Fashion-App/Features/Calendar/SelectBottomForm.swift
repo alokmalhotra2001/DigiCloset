@@ -1,16 +1,27 @@
 import SwiftUI
 
 struct SelectBottomForm: View {
-    @EnvironmentObject var wardrobeStore: WardrobeStore
-    
+    let currWeather: CurrentWeather
     var threeColumnGrid = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+    @EnvironmentObject var wardrobeStore: WardrobeStore
+    @Binding var dict: [Date: ClothingItem]
+    @Binding var selectedDate: Date
     
     var body: some View {
-        LazyVGrid(columns: threeColumnGrid) {
-            ForEach($wardrobeStore.clothes
-                .filter({ $0.category
-                    .wrappedValue == .bottom})) { $clothingItem in
-           SelectBottomCell(clothingItem: $clothingItem)
+        
+        Text("\(selectedDate.formatted(.dateTime.day().month(.wide).weekday(.wide)))")
+            .padding()
+            .font(.system(size: 23))
+        
+        TempBox(currWeather: currWeather)
+        
+        ScrollView{
+            LazyVGrid(columns: threeColumnGrid) {
+                ForEach($wardrobeStore.clothes
+                    .filter({ $0.category
+                        .wrappedValue == .bottom})) { $clothingItem in
+               SelectBottomCell(clothingItem: $clothingItem, dict: $dict, selectedDate: $selectedDate)
+                }
             }
         }
         .navigationTitle("Bottoms")
@@ -20,28 +31,19 @@ struct SelectBottomForm: View {
 struct SelectBottomCell: View {
     @Binding var clothingItem: ClothingItem
     @EnvironmentObject var wardrobeStore: WardrobeStore
+    @Binding var dict: [Date: ClothingItem]
+    @Binding var selectedDate: Date
     
     var body: some View {
         VStack {
             Button  {
-                
+                dict[selectedDate] = clothingItem
             }label: {
                 clothingItem.img
                     .resizable()
                     .scaledToFit()
-                    //.frame(maxWidth: 100, maxHeight: 100)
             }
             
         }
     }
 }
-
-struct Bottom_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView { SelectBottomForm().environmentObject( WardrobeStore() ) }
-    }
-}
-
-
-
-

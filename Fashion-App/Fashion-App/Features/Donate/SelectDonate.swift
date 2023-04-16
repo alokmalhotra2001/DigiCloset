@@ -13,7 +13,7 @@ struct SelectDonate: View {
           
           LazyVGrid(columns: Array(repeating: GridItem(.flexible(minimum: 30)), count: 5), spacing: 10) {
             ForEach($wardrobeStore.clothes_donate) { $clothingItem in
-                  SelectTopCell(clothingItem: $clothingItem)
+                  SelectTopCellDonate(clothingItem: $clothingItem)
                 }
           }
           
@@ -34,7 +34,26 @@ struct SelectDonate: View {
   }
 }
 
+
+struct SelectTopCellDonate: View {
+    @Binding var clothingItem: ClothingItem
+    @EnvironmentObject var wardrobeStore: WardrobeStore
+    
+    var body: some View {
+            VStack {
+                Button {
+                } label: {
+                    clothingItem.img
+                        .resizable()
+                        .scaledToFit()
+                }
+            }
+        Spacer()
+    }
+}
+
 struct DonatePreviews: PreviewProvider {
+    
     static var previews: some View {
         NavigationView { SelectDonate().environmentObject( WardrobeStore() ) }
     }
