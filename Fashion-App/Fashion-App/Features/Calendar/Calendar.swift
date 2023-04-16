@@ -5,7 +5,6 @@ import EventKitUI
 
 struct Calendar: View {
     
-    //let currWeather: CurrentWeather
     let location: CLLocationCoordinate2D
     @EnvironmentObject var forecastLoader: ForecastLoader
     @EnvironmentObject var currentConditionsLoader: CurrentConditionsLoader
@@ -108,18 +107,6 @@ struct Calendar: View {
             
             .sheet(isPresented: $isPresentingTopForm) {
               NavigationStack {
-//                  VStack {
-//                      switch forecastLoader.state {
-//                      case .idle: Color.clear
-//                      case .loading: ProgressView()
-//                      case .failed(let error): Text("Error \(error.localizedDescription)")
-//                      case .success(let forecastConditions):
-//                          SelectTopForm(currWeather: forecastConditions)
-//                      }
-//                  }
-//                  .task { await currentConditionsLoader.loadWeatherData(coordinate: location) }
-                  
-                  
                   VStack {
                       switch currentConditionsLoader.state {
                       case .idle: Color.clear
@@ -131,8 +118,6 @@ struct Calendar: View {
                   }
                   .task { await currentConditionsLoader.loadWeatherData(coordinate: location) }
                   
-                  
-                  //SelectTopForm(currWeather: currentConditions).environmentObject( WardrobeStore())
                   .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                       Button("Cancel") { isPresentingTopForm = false }
@@ -162,7 +147,7 @@ struct Calendar: View {
                       }
                   }
                   .task { await currentConditionsLoader.loadWeatherData(coordinate: location) }
-                //SelectBottomForm()
+
                   .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                       Button("Cancel") { isPresentingBottomsForm = false }
@@ -170,8 +155,6 @@ struct Calendar: View {
                     }
                     ToolbarItem(placement: .navigationBarTrailing) {
                       Button("Save") {
-//                        let newMovie = Movie.create(from: newMovieFormData)
-//                        movieStore.createMovie(newMovie)
                         isPresentingBottomsForm = false
                       }
                     }
@@ -179,7 +162,6 @@ struct Calendar: View {
               }
               .padding()
             }
-            //.navigationTitle(date)
         }
     }
 }

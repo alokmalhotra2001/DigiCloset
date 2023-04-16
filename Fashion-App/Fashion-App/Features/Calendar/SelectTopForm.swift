@@ -36,35 +36,14 @@ struct SelectTopCell: View {
     var body: some View {
             VStack {
                 Button {
-                    //clothingItem.planToWear?.toggle()
                     dict[selectedDate] = clothingItem
                 } label: {
                     clothingItem.img
                         .resizable()
                         .scaledToFit()
-                        //.frame(maxWidth: 100, maxHeight: 100)
                 }
             }
         
-//        if clothingItem.planToWear ?? false {
-//              Image(systemName: "checkmark.circle.fill")
-//                .foregroundColor(Color.black)
-//                .font(.largeTitle)
-//                .padding(5)
-//                .background(Circle().foregroundColor(.white))
-//        }
         Spacer()
     }
 }
-
-//struct Top_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NavigationView {
-//            SelectTopForm(currWeather: currentConditions)
-//            .environmentObject(WardrobeStore() )
-//            .environmentObject(ForecastLoader(apiClient: MockWeatherAPIClient()))
-//            .environmentObject(CurrentConditionsLoader(apiClient: MockWeatherAPIClient()))
-//        }
-//
-//    }
-//}

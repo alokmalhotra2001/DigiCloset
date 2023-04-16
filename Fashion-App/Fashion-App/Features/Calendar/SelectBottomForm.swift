@@ -37,33 +37,13 @@ struct SelectBottomCell: View {
     var body: some View {
         VStack {
             Button  {
-                //clothingItem.planToWear?.toggle()
                 dict[selectedDate] = clothingItem
             }label: {
                 clothingItem.img
                     .resizable()
                     .scaledToFit()
-                    //.frame(maxWidth: 100, maxHeight: 100)
             }
             
         }
-        
-//        if clothingItem.planToWear ?? false {
-//              Image(systemName: "checkmark.circle.fill")
-//                .foregroundColor(Color.black)
-//                .font(.largeTitle)
-//                .padding(5)
-//                .background(Circle().foregroundColor(.white))
-//        }
-//        Spacer()
     }
 }
-
-//struct Bottom_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NavigationView { SelectBottomForm()
-//            .environmentObject( WardrobeStore() )
-//            .environmentObject(CurrentConditionsLoader(apiClient: WeatherAPI))
-//        }
-//    }
-//}
