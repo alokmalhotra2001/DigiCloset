@@ -1,12 +1,21 @@
 import SwiftUI
+import CoreLocation
+import EventKit
+import EventKitUI
 
 struct Calendar: View {
     
+    //let currWeather: CurrentWeather
+    let location: CLLocationCoordinate2D
+    @EnvironmentObject var forecastLoader: ForecastLoader
+    @EnvironmentObject var currentConditionsLoader: CurrentConditionsLoader
     @EnvironmentObject var wardrobeStore: WardrobeStore
     @State private var date = Date()
     @State var isPresentingTopForm: Bool = false
     @State var isPresentingBottomsForm: Bool = false
     @State var newClothingFormData = ClothingItem.FormData()
+    @State var dictionaryTop: [Date: ClothingItem] = [:]
+    @State var dictionaryBottoms: [Date: ClothingItem] = [:]
     
     var dateClosedRange: ClosedRange<Date> {
         let min = Date()
@@ -17,6 +26,7 @@ struct Calendar: View {
     var body: some View {
         
         NavigationStack {
+            
             ScrollView {
                 //calendar view
                 DatePicker("Selected Date", selection: $date,
@@ -27,16 +37,19 @@ struct Calendar: View {
                 //generate rest of week
                 
                 
-                Text("Outfit for \(date.formatted(.dateTime.day().month(.wide).weekday(.wide)))")
+                Text("My outfit for \(date.formatted(.dateTime.day().month(.wide).weekday(.wide)))")
                     .padding()
                 
                 //shirt picker
                 HStack {
-                    Image(systemName: "tshirt.fill")
+                    var value = dictionaryTop[date]
+                    
+                    value?.img
                         .resizable()
                         .frame(maxWidth: 45, maxHeight: 45)
-                    Text("Top")
-                        .padding()
+                    
+                    Text(value?.name ?? "No Top Selected")
+                    
                     Button {
                         isPresentingTopForm.toggle()
                     } label: {
@@ -51,11 +64,14 @@ struct Calendar: View {
                 //bottoms picker
                 HStack {
                     
-                    Image("bottom")
+                    var value = dictionaryBottoms[date]
+                    
+                    value?.img
                         .resizable()
-                        .frame(maxWidth: 65, maxHeight: 65)
-                    Text("Bottoms")
-                        .padding()
+                        .frame(maxWidth: 45, maxHeight: 45)
+                    
+                    Text(value?.name ?? "No Bottoms Selected")
+                    
                     Button {
                         isPresentingBottomsForm.toggle()
                     } label: {
@@ -71,7 +87,31 @@ struct Calendar: View {
             
             .sheet(isPresented: $isPresentingTopForm) {
               NavigationStack {
-                SelectTopForm()
+//                  VStack {
+//                      switch forecastLoader.state {
+//                      case .idle: Color.clear
+//                      case .loading: ProgressView()
+//                      case .failed(let error): Text("Error \(error.localizedDescription)")
+//                      case .success(let forecastConditions):
+//                          SelectTopForm(currWeather: forecastConditions)
+//                      }
+//                  }
+//                  .task { await currentConditionsLoader.loadWeatherData(coordinate: location) }
+                  
+                  
+                  VStack {
+                      switch currentConditionsLoader.state {
+                      case .idle: Color.clear
+                      case .loading: ProgressView()
+                      case .failed(let error): Text("Error \(error.localizedDescription)")
+                      case .success(let currentConditions):
+                          SelectTopForm(currWeather: currentConditions, dict: $dictionaryTop, selectedDate: $date)
+                      }
+                  }
+                  .task { await currentConditionsLoader.loadWeatherData(coordinate: location) }
+                  
+                  
+                  //SelectTopForm(currWeather: currentConditions).environmentObject( WardrobeStore())
                   .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                       Button("Cancel") { isPresentingTopForm = false }
@@ -79,8 +119,6 @@ struct Calendar: View {
                     }
                     ToolbarItem(placement: .navigationBarTrailing) {
                       Button("Save") {
-                        //let newMovie = Movie.create(from: newMovieFormData)
-                        //movieStore.createMovie(newMovie)
                         isPresentingTopForm = false
                       }
                     }
@@ -90,8 +128,20 @@ struct Calendar: View {
             }
             
             .sheet(isPresented: $isPresentingBottomsForm) {
+                
               NavigationStack {
-                SelectBottomForm()
+                  
+                  VStack {
+                      switch currentConditionsLoader.state {
+                      case .idle: Color.clear
+                      case .loading: ProgressView()
+                      case .failed(let error): Text("Error \(error.localizedDescription)")
+                      case .success(let currentConditions):
+                          SelectBottomForm(currWeather: currentConditions, dict: $dictionaryBottoms, selectedDate: $date)
+                      }
+                  }
+                  .task { await currentConditionsLoader.loadWeatherData(coordinate: location) }
+                //SelectBottomForm()
                   .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                       Button("Cancel") { isPresentingBottomsForm = false }
@@ -115,6 +165,9 @@ struct Calendar: View {
 
 struct Calendar_Previews: PreviewProvider {
     static var previews: some View {
-        Calendar()
+        Calendar(location: CLLocationCoordinate2D(latitude: 40.3451, longitude: 74.1840))
+            .environmentObject(CurrentConditionsLoader(apiClient: MockWeatherAPIClient()))
+            .environmentObject(WardrobeStore() )
+            .environmentObject(ForecastLoader(apiClient: MockWeatherAPIClient()))
     }
 }

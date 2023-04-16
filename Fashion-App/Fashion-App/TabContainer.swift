@@ -12,7 +12,7 @@ struct TabContainer: View {
                 .tabItem { Label("My Closet", systemImage: "cabinet.fill") }
             NavigationView { Today(location: CLLocationCoordinate2D(latitude: coordinate?.latitude ?? 0, longitude: coordinate?.longitude ?? 0)) }
                 .tabItem { Label("Today", systemImage: "thermometer.medium") }
-            NavigationView { Calendar() }
+            NavigationView { Calendar(location: CLLocationCoordinate2D(latitude: coordinate?.latitude ?? 0, longitude: coordinate?.longitude ?? 0)) }
                 .tabItem { Label("Calendar", systemImage: "calendar") }
             NavigationView { Donate() }
                 .tabItem { Label("Donate", systemImage: "box.truck") }
