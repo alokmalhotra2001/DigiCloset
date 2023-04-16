@@ -16,6 +16,7 @@ enum Category: String, CaseIterable, Identifiable {
     var id: Self { self }
     case top
     case bottom
+    case other
 }
 
 // Inclusive
