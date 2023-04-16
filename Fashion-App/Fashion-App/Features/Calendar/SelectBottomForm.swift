@@ -9,13 +9,17 @@ struct SelectBottomForm: View {
     
     var body: some View {
         
-        Text("\(selectedDate.formatted(.dateTime.day().month(.wide).weekday(.wide)))")
-            .padding()
-            .font(.system(size: 23))
-        
-        TempBox(currWeather: currWeather)
-        
         ScrollView{
+            //Display Selected Day and Daate
+            Text("Select Bottoms for \(selectedDate.formatted(.dateTime.day().month(.wide).weekday(.wide)))")
+                .padding()
+                .font(.system(size: 23))
+                .bold()
+            
+            //Display Weather Conditions
+            TempBox(currWeather: currWeather)
+            
+            //Display All Bottoms in Closet
             LazyVGrid(columns: threeColumnGrid) {
                 ForEach($wardrobeStore.clothes
                     .filter({ $0.category
@@ -24,7 +28,7 @@ struct SelectBottomForm: View {
                 }
             }
         }
-        .navigationTitle("Bottoms")
+        //.navigationTitle("Bottoms")
     }
 }
 

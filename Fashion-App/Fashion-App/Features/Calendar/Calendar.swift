@@ -65,6 +65,7 @@ struct Calendar: View {
                 //pick outfit
                 Text("My outfit for \(date.formatted(.dateTime.day().month(.wide).weekday(.wide)))")
                     .padding()
+                    .bold()
                 
                 //shirt picker
                 VStack {
@@ -77,31 +78,34 @@ struct Calendar: View {
                         
                         Text(value?.name ?? "No Top Selected")
                         
-                        Button {
-                            isPresentingTopForm.toggle()
-                        } label: {
-                            Image(systemName: "square.and.pencil.circle")
-                                .resizable()
-                                .frame(maxWidth: 30, maxHeight: 30)
-                                .foregroundColor(.blue)
+                        if (dictionaryTop[date] == nil){
+                            Button {
+                                isPresentingTopForm.toggle()
+                            } label: {
+                                Image(systemName: "square.and.pencil.circle")
+                                    .resizable()
+                                    .frame(maxWidth: 30, maxHeight: 30)
+                                    .foregroundColor(.blue)
+                            }
+                            .buttonStyle(PlainButtonStyle())
                         }
-                        .buttonStyle(PlainButtonStyle())
-                    }
-                    
-                    //reset top selection
-                    if (dictionaryTop[date] != nil){
-                        Button {
-                            dictionaryTop[date] = nil
-                        } label: {
-                            Text("reset top")
-                                .foregroundColor(.white)
-                                .padding(.horizontal, 10)
-                                .padding(.vertical, 4)
-                                .foregroundColor(.white)
-                                .background(.blue)
-                                .cornerRadius(8)
-                                .buttonStyle(PlainButtonStyle())
+                        
+                        //reset top selection
+                        else {
+                            Button {
+                                dictionaryTop[date] = nil
+                            } label: {
+                                Text("reset top")
+                                    .foregroundColor(.white)
+                                    .padding(.horizontal, 10)
+                                    .padding(.vertical, 4)
+                                    .foregroundColor(.white)
+                                    .background(.blue)
+                                    .cornerRadius(8)
+                                    .buttonStyle(PlainButtonStyle())
+                            }
                         }
+                        
                     }
                 }
                 
@@ -117,30 +121,33 @@ struct Calendar: View {
                         
                         Text(value?.name ?? "No Bottoms Selected")
                         
-                        Button {
-                            isPresentingBottomsForm.toggle()
-                        } label: {
-                            Image(systemName: "square.and.pencil.circle")
-                                .resizable()
-                                .frame(maxWidth: 30, maxHeight: 30)
-                                .foregroundColor(.blue)
+                        //display edit bottoms button
+                        if (dictionaryBottoms[date] == nil){
+                            Button {
+                                isPresentingBottomsForm.toggle()
+                            } label: {
+                                Image(systemName: "square.and.pencil.circle")
+                                    .resizable()
+                                    .frame(maxWidth: 30, maxHeight: 30)
+                                    .foregroundColor(.blue)
+                            }
+                            .buttonStyle(PlainButtonStyle())
                         }
-                        .buttonStyle(PlainButtonStyle())
-                    }
-                    
-                    //reset bottoms selection
-                    if (dictionaryBottoms[date] != nil){
-                        Button {
-                            dictionaryBottoms[date] = nil
-                        } label: {
-                            Text("reset bottoms")
-                                .foregroundColor(.white)
-                                .padding(.horizontal, 10)
-                                .padding(.vertical, 4)
-                                .foregroundColor(.white)
-                                .background(.blue)
-                                .cornerRadius(8)
-                                .buttonStyle(PlainButtonStyle())
+                        
+                        //reset bottoms selection
+                        else {
+                            Button {
+                                dictionaryBottoms[date] = nil
+                            } label: {
+                                Text("reset bottoms")
+                                    .foregroundColor(.white)
+                                    .padding(.horizontal, 10)
+                                    .padding(.vertical, 4)
+                                    .foregroundColor(.white)
+                                    .background(.blue)
+                                    .cornerRadius(8)
+                                    .buttonStyle(PlainButtonStyle())
+                            }
                         }
                     }
                 }

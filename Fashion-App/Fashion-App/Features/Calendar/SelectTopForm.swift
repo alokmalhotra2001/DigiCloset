@@ -9,21 +9,22 @@ struct SelectTopForm: View {
     @Binding var selectedDate: Date
     
     var body: some View {
-        
-        Text("\(selectedDate.formatted(.dateTime.day().month(.wide).weekday(.wide)))")
-            .padding()
-            .font(.system(size: 23))
-        
-        TempBox(currWeather: currWeather)
-        
-        LazyVGrid(columns: threeColumnGrid) {
-            ForEach($wardrobeStore.clothes
-                .filter({ $0.category
-                    .wrappedValue == .top})) { $clothingItem in
-                        SelectTopCell(clothingItem: $clothingItem, dict: $dict, selectedDate: $selectedDate)
+        ScrollView {
+            Text("Select Top for \(selectedDate.formatted(.dateTime.day().month(.wide).weekday(.wide)))")
+                .padding()
+                .font(.system(size: 23))
+                .bold()
+            
+            TempBox(currWeather: currWeather)
+            
+            LazyVGrid(columns: threeColumnGrid) {
+                ForEach($wardrobeStore.clothes
+                    .filter({ $0.category
+                        .wrappedValue == .top})) { $clothingItem in
+                            SelectTopCell(clothingItem: $clothingItem, dict: $dict, selectedDate: $selectedDate)
+                }
             }
-        }
-        .navigationTitle("Tops")
+       }
     }
 }
 
