@@ -17,7 +17,7 @@ struct Donate: View {
           let clothes_dynamic = wardrobeStore.clothes_dynamic
           // let clothes_donate = wardrobeStore.clothes_donate
                     
-          HStack { SingleClothingItemView(currIndex: $currClothIndex, disabled: $selectionConfirmed, currItem: clothes_dynamic[currClothIndex], currCat: .other, sz: clothes.count) }
+          HStack { SingleClothingItemView(currIndex: $currClothIndex, currItem: clothes_dynamic[currClothIndex], currCat: .other, sz: clothes.count) }
           
           HStack(alignment: .top){
             
