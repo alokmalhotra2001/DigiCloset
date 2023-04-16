@@ -16,6 +16,8 @@ struct Calendar: View {
     @State var newClothingFormData = ClothingItem.FormData()
     @State var dictionaryTop: [Date: ClothingItem] = [:]
     @State var dictionaryBottoms: [Date: ClothingItem] = [:]
+    @State var currTopIndex: Int = 0
+    @State var currBottomIndex: Int = 0
     
     var dateClosedRange: ClosedRange<Date> {
         let min = Date()
@@ -24,6 +26,9 @@ struct Calendar: View {
     }
     
     var body: some View {
+        
+        let tops = wardrobeStore.getCleanTops()
+        let bottoms = wardrobeStore.getCleanBottoms()
         
         NavigationStack {
             
@@ -34,9 +39,25 @@ struct Calendar: View {
                            displayedComponents: .date)
                     .datePickerStyle(GraphicalDatePickerStyle())
                 
-                //generate rest of week
+                //generate random outfit for selected date
+                HStack {
+                    Button {
+                        currTopIndex = Int.random(in: 0..<tops.count)
+                        dictionaryTop[date] = tops[currTopIndex]
+                        
+                        currBottomIndex = Int.random(in: 0..<bottoms.count)
+                        dictionaryBottoms[date] = bottoms[currBottomIndex]
+                    } label: { Text("Generate Random Outfit") }
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 8)
+                        .foregroundColor(.white)
+                        .background(.black)
+                        .cornerRadius(8)
+                        .buttonStyle(PlainButtonStyle())
+                        .disabled(wardrobeStore.selectionConfirmed || tops.count == 0 || bottoms.count == 0)
+                }
                 
-                
+                //pick outfit
                 Text("My outfit for \(date.formatted(.dateTime.day().month(.wide).weekday(.wide)))")
                     .padding()
                 
