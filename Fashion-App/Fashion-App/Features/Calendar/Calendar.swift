@@ -66,46 +66,67 @@ struct Calendar: View {
                     .padding()
                 
                 //shirt picker
-                HStack {
-                    var value = dictionaryTop[date]
-                    
-                    value?.img
-                        .resizable()
-                        .frame(maxWidth: 45, maxHeight: 45)
-                    
-                    Text(value?.name ?? "No Top Selected")
-                    
-                    Button {
-                        isPresentingTopForm.toggle()
-                    } label: {
-                        Image(systemName: "square.and.pencil.circle")
+                VStack {
+                    HStack {
+                        var value = dictionaryTop[date]
+                        
+                        value?.img
                             .resizable()
-                            .frame(maxWidth: 30, maxHeight: 30)
-                            .foregroundColor(.black)
+                            .frame(maxWidth: 45, maxHeight: 45)
+                        
+                        Text(value?.name ?? "No Top Selected")
+                        
+                        Button {
+                            isPresentingTopForm.toggle()
+                        } label: {
+                            Image(systemName: "square.and.pencil.circle")
+                                .resizable()
+                                .frame(maxWidth: 30, maxHeight: 30)
+                                .foregroundColor(.black)
+                        }
+                        .buttonStyle(PlainButtonStyle())
                     }
-                    .buttonStyle(PlainButtonStyle())
+                    
+                    //reset top selection
+                    Button {
+                        dictionaryTop[date] = nil
+                    } label: {
+                        Text("reset top")
+                            .foregroundColor(.blue)
+                    }
+                    .padding()
                 }
                 
                 //bottoms picker
-                HStack {
-                    
-                    var value = dictionaryBottoms[date]
-                    
-                    value?.img
-                        .resizable()
-                        .frame(maxWidth: 45, maxHeight: 45)
-                    
-                    Text(value?.name ?? "No Bottoms Selected")
-                    
-                    Button {
-                        isPresentingBottomsForm.toggle()
-                    } label: {
-                        Image(systemName: "square.and.pencil.circle")
+                VStack {
+                    HStack {
+                        
+                        var value = dictionaryBottoms[date]
+                        
+                        value?.img
                             .resizable()
-                            .frame(maxWidth: 30, maxHeight: 30)
-                            .foregroundColor(.black)
+                            .frame(maxWidth: 45, maxHeight: 45)
+                        
+                        Text(value?.name ?? "No Bottoms Selected")
+                        
+                        Button {
+                            isPresentingBottomsForm.toggle()
+                        } label: {
+                            Image(systemName: "square.and.pencil.circle")
+                                .resizable()
+                                .frame(maxWidth: 30, maxHeight: 30)
+                                .foregroundColor(.black)
+                        }
+                        .buttonStyle(PlainButtonStyle())
                     }
-                    .buttonStyle(PlainButtonStyle())
+                    
+                    //reset bottoms selection
+                    Button {
+                        dictionaryBottoms[date] = nil
+                    } label: {
+                        Text("reset bottom")
+                            .foregroundColor(.blue)
+                    }
                 }
                 
             }
