@@ -4,10 +4,12 @@
 import SwiftUI
 
 struct NotificationsView: View {
+    @Binding var currTopIndex: Int
+    @Binding var currBottomIndex: Int
     @EnvironmentObject var wardrobeStore: WardrobeStore
     var body: some View {
         VStack{
-            List($wardrobeStore.notifications) { $notif in NotificationItemRow(notif: $notif) }
+            List($wardrobeStore.notifications) { $notif in NotificationItemRow(notif: $notif, currTopIndex: $currTopIndex, currBottomIndex: $currBottomIndex) }
             .navigationTitle("Notifications")
             .toolbar {
             }
@@ -17,6 +19,8 @@ struct NotificationsView: View {
 
 struct NotificationItemRow: View {
     @Binding var notif: Notification
+    @Binding var currTopIndex: Int
+    @Binding var currBottomIndex: Int
     @EnvironmentObject var wardrobeStore: WardrobeStore
     @State var notifFormData = Notification.FormData()
     @State var isPresentingNotifForm: Bool = false
@@ -90,6 +94,8 @@ struct NotificationItemRow: View {
                                         if let index = wardrobeStore.notifications.firstIndex(where: { $0.id == notif.id }) {
                                             if (index == 0) { wardrobeStore.resetOutfitSelection() }
                                         }
+                                        currTopIndex = 0
+                                        currBottomIndex = 0
                                         
                                         notif.completed = true
                                         isPresentingAlert = false
@@ -106,8 +112,8 @@ struct NotificationItemRow: View {
 }
 
 
-struct NotificationsView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView { NotificationsView().environmentObject( WardrobeStore() ) }
-    }
-}
+//struct NotificationsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationView { NotificationsView(currTopIndex: $0, currBottomIndex: $0).environmentObject( WardrobeStore() ) }
+//    }
+//}

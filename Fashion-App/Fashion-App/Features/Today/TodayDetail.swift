@@ -88,7 +88,7 @@ struct TodayDetail: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 NavigationLink {
-                    NotificationsView()
+                    NotificationsView(currTopIndex: $currTopIndex, currBottomIndex: $currBottomIndex)
                 } label: { wardrobeStore.getNotifications().isEmpty ? Image(systemName: "envelope") : Image(systemName: "envelope.fill") }
             }
             ToolbarItem(placement: .principal) {
