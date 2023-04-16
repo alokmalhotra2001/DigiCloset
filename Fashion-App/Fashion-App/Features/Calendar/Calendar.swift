@@ -55,11 +55,12 @@ struct Calendar: View {
                         .padding(.horizontal, 10)
                         .padding(.vertical, 8)
                         .foregroundColor(.white)
-                        .background(.black)
+                        .background(.blue)
                         .cornerRadius(8)
                         .buttonStyle(PlainButtonStyle())
                         .disabled(wardrobeStore.selectionConfirmed || tops.count == 0 || bottoms.count == 0)
                 }
+                .padding()
                 
                 //pick outfit
                 Text("My outfit for \(date.formatted(.dateTime.day().month(.wide).weekday(.wide)))")
@@ -82,19 +83,26 @@ struct Calendar: View {
                             Image(systemName: "square.and.pencil.circle")
                                 .resizable()
                                 .frame(maxWidth: 30, maxHeight: 30)
-                                .foregroundColor(.black)
+                                .foregroundColor(.blue)
                         }
                         .buttonStyle(PlainButtonStyle())
                     }
                     
                     //reset top selection
-                    Button {
-                        dictionaryTop[date] = nil
-                    } label: {
-                        Text("reset top")
-                            .foregroundColor(.blue)
+                    if (dictionaryTop[date] != nil){
+                        Button {
+                            dictionaryTop[date] = nil
+                        } label: {
+                            Text("reset top")
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 4)
+                                .foregroundColor(.white)
+                                .background(.blue)
+                                .cornerRadius(8)
+                                .buttonStyle(PlainButtonStyle())
+                        }
                     }
-                    .padding()
                 }
                 
                 //bottoms picker
@@ -105,7 +113,7 @@ struct Calendar: View {
                         
                         value?.img
                             .resizable()
-                            .frame(maxWidth: 45, maxHeight: 45)
+                            .frame(maxWidth: 55, maxHeight: 55)
                         
                         Text(value?.name ?? "No Bottoms Selected")
                         
@@ -115,17 +123,25 @@ struct Calendar: View {
                             Image(systemName: "square.and.pencil.circle")
                                 .resizable()
                                 .frame(maxWidth: 30, maxHeight: 30)
-                                .foregroundColor(.black)
+                                .foregroundColor(.blue)
                         }
                         .buttonStyle(PlainButtonStyle())
                     }
                     
                     //reset bottoms selection
-                    Button {
-                        dictionaryBottoms[date] = nil
-                    } label: {
-                        Text("reset bottom")
-                            .foregroundColor(.blue)
+                    if (dictionaryBottoms[date] != nil){
+                        Button {
+                            dictionaryBottoms[date] = nil
+                        } label: {
+                            Text("reset bottoms")
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 4)
+                                .foregroundColor(.white)
+                                .background(.blue)
+                                .cornerRadius(8)
+                                .buttonStyle(PlainButtonStyle())
+                        }
                     }
                 }
                 
