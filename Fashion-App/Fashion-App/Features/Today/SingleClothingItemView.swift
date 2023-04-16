@@ -24,7 +24,7 @@ struct SingleClothingItemView: View {
                     .foregroundColor(.black)
             }
                 .buttonStyle(PlainButtonStyle())
-                .disabled(currIndex == 0 || disabled)
+                .disabled(currIndex < 0 || disabled)
                 .zIndex(1)
                 
             
@@ -44,7 +44,7 @@ struct SingleClothingItemView: View {
                     .foregroundColor(.black)
             }
                 .buttonStyle(PlainButtonStyle())
-                .disabled(currIndex == sz - 1  || disabled)
+                .disabled(currIndex < 0  || disabled)
         
             .zIndex(1)
             

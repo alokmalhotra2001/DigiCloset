@@ -6,32 +6,31 @@ struct SelectDonate: View {
     var fourColumnGrid = [GridItem(), GridItem(), GridItem(), GridItem(), GridItem(), GridItem()]
     
   var body: some View {
-    NavigationView {
-      
       VStack{
         ScrollView{
-          Text("Selected Clothes to Donate").font(.title).frame(alignment: .top)
+          Text("Selected Clothes to Donate").font(.title).frame(alignment: .top).padding(.vertical, 30).fontWeight(.bold)
           
           
-          LazyVGrid(columns: fourColumnGrid) {
-            ForEach($wardrobeStore.keep) { $clothingItem in
+          LazyVGrid(columns: Array(repeating: GridItem(.flexible(minimum: 30)), count: 5), spacing: 10) {
+            ForEach($wardrobeStore.clothes_donate) { $clothingItem in
                   SelectTopCell(clothingItem: $clothingItem)
                 }
           }
           
-//          Button("Donate") {
-//            print("filler") // add To Donate bag, go to next image //TODO: TEMP -- CHANGE
-//          }.padding().buttonStyle(.borderedProminent).frame(maxHeight: 200)
-//            .frame(maxWidth: 200).tint(.black)
+          VStack{
           
-          NavigationLink(destination: ContentView()) {
-            Text("Find Donation Centers Near Me").padding(.top, 40)
+          Text("Find Donation Centers Near Me").padding(.top, 65)
+          
+            NavigationLink(destination: ContentView()) {
+              Image(systemName: "map").resizable().scaledToFit()
+                .frame(maxWidth: 120, maxHeight: 120).foregroundColor(Color(.black))
+            }
+            
+            
           }
           
         }
       }
-      
-    }
   }
 }
 

@@ -3,22 +3,16 @@ import SwiftUI
 class WardrobeStore: ObservableObject {
     
     @Published var clothes: [ClothingItem] = ClothingItem.previewData // starting state
-    @Published var clothes_to_donate: [ClothingItem] = ClothingItem.previewData // starting state
-    @Published var keep: [ClothingItem] = ClothingItem.previewData // starting state
+    @Published var clothes_dynamic: [ClothingItem] = ClothingItem.previewData // used in donate
+    @Published var clothes_donate = [ClothingItem]()
     
-    func addClothingItem(_ clothingItem: ClothingItem) { clothes.append(clothingItem) }
+  func addClothingItem(_ clothingItem: ClothingItem) { clothes.append(clothingItem) }
   
-   // func addFinDonate(_ clothingItem: ClothingItem) { finalized_donate.append(clothingItem) }
+  func addDonate(_ clothingItem: ClothingItem) { clothes_donate.append(clothingItem) }
   
-  func remKeep(_ clothingItem: ClothingItem){
-       if let index = keep.firstIndex(where: { $0.id == clothingItem.id }) {
-          keep.remove(at: index)
-       }
-    }
-  
-  func removeToDonate(_ clothingItem: ClothingItem){
-       if let index = clothes_to_donate.firstIndex(where: { $0.id == clothingItem.id }) {
-          clothes_to_donate.remove(at: index)
+  func removeDynamic(_ clothingItem: ClothingItem){
+       if let index = clothes_dynamic.firstIndex(where: { $0.id == clothingItem.id }) {
+         clothes_dynamic.remove(at: index)
        }
     }
     

@@ -2,49 +2,48 @@ import SwiftUI
 
 struct Donate: View {
   
-  @State var currTopIndex: Int = 0
-  @State var currBottomIndex: Int = 0
-  @State var isPresentingSelectionAlert: Bool = false
+  @State var currClothIndex: Int = 0
   @State var selectionConfirmed: Bool = false
   @EnvironmentObject var wardrobeStore: WardrobeStore
     
     var body: some View {
       VStack{
         ScrollView{
-          Text("Clean My Closet").font(.title).frame(alignment: .top).padding(.top, 30)
+          Text("Clean My Closet").font(.title).frame(alignment: .top).padding(.vertical, 30).fontWeight(.bold)
           
           // TODO: all clothes in order of least worn, fix index (tops, all)
           // add note @ end: "All your clothes have been added for donation!"
           let clothes = wardrobeStore.clothes
-          let clothes_donate = wardrobeStore.clothes_to_donate
-          let clothes_keep = wardrobeStore.keep
-          
-          HStack { SingleClothingItemView(currIndex: $currTopIndex, disabled: $selectionConfirmed, currItem: clothes_donate[currTopIndex], currCat: .top, sz: clothes_donate.count) }
+          let clothes_dynamic = wardrobeStore.clothes_dynamic
+          // let clothes_donate = wardrobeStore.clothes_donate
+                    
+          HStack { SingleClothingItemView(currIndex: $currClothIndex, disabled: $selectionConfirmed, currItem: clothes_dynamic[currClothIndex], currCat: .other, sz: clothes.count) }
           
           HStack(alignment: .top){
             
            Button("Keep") {
-              wardrobeStore.removeToDonate(clothes[currTopIndex])
-              wardrobeStore.remKeep(clothes[currTopIndex])
+              wardrobeStore.removeDynamic(clothes_dynamic[currClothIndex]) 
             }.padding().buttonStyle(.borderedProminent).frame(maxHeight: 200)
               .frame(maxWidth: 200).tint(.black)
             
             Button("Donate") {
-               wardrobeStore.removeToDonate(clothes[currTopIndex])
-              // wardrobeStore.addFinDonate(clothes[currTopIndex])
-               wardrobeStore.deleteClothingItem(clothes[currTopIndex])
+               wardrobeStore.addDonate(clothes_dynamic[currClothIndex])
+               wardrobeStore.deleteClothingItem(clothes_dynamic[currClothIndex])
+               wardrobeStore.removeDynamic(clothes_dynamic[currClothIndex])
              }.padding().buttonStyle(.borderedProminent).frame(maxHeight: 200)
               .frame(maxWidth: 200).tint(.black)
             
         }
+          
+          Text("View Clothes to Donate").padding(.top, 75)
+          
+          NavigationLink(destination: SelectDonate()) {
+              Image(systemName: "shippingbox").resizable().scaledToFit()
+                .frame(maxWidth: 120, maxHeight: 120).foregroundColor(Color(.black))
+            }
+          
       }
           
-        Text("View Clothes to Donate")
-        
-        NavigationLink(destination: SelectDonate()) {
-            Image(systemName: "shippingbox").resizable().scaledToFit()
-              .frame(maxWidth: 120, maxHeight: 120)
-          }
           
         }
       }
