@@ -9,7 +9,7 @@ struct Calendar: View {
     @EnvironmentObject var forecastLoader: ForecastLoader
     @EnvironmentObject var currentConditionsLoader: CurrentConditionsLoader
     @EnvironmentObject var wardrobeStore: WardrobeStore
-    @State private var date = Date()
+    @State private var date: Date = Date()
     @State var isPresentingTopForm: Bool = false
     @State var isPresentingBottomsForm: Bool = false
     @State var newClothingFormData = ClothingItem.FormData()
@@ -17,6 +17,8 @@ struct Calendar: View {
     @State var dictionaryBottoms: [Date: ClothingItem] = [:]
     @State var currTopIndex: Int = 0
     @State var currBottomIndex: Int = 0
+    @State var topSelected: Bool = false
+    @State var bottomSelected: Bool = false
     
     var dateClosedRange: ClosedRange<Date> {
         let min = Date()
@@ -37,15 +39,18 @@ struct Calendar: View {
                            in: dateClosedRange,
                            displayedComponents: .date)
                     .datePickerStyle(GraphicalDatePickerStyle())
+                    .accentColor(.blue)
                 
                 //generate random outfit for selected date
                 HStack {
                     Button {
                         currTopIndex = Int.random(in: 0..<tops.count)
                         dictionaryTop[date] = tops[currTopIndex]
+                        topSelected = true
                         
                         currBottomIndex = Int.random(in: 0..<bottoms.count)
                         dictionaryBottoms[date] = bottoms[currBottomIndex]
+                        bottomSelected = true
                     } label: { Text("Generate Random Outfit") }
                         .padding(.horizontal, 10)
                         .padding(.vertical, 8)
@@ -76,7 +81,7 @@ struct Calendar: View {
                         Image(systemName: "square.and.pencil.circle")
                             .resizable()
                             .frame(maxWidth: 30, maxHeight: 30)
-                            .foregroundColor(.blue)
+                            .foregroundColor(.black)
                     }
                     .buttonStyle(PlainButtonStyle())
                 }
@@ -98,7 +103,7 @@ struct Calendar: View {
                         Image(systemName: "square.and.pencil.circle")
                             .resizable()
                             .frame(maxWidth: 30, maxHeight: 30)
-                            .foregroundColor(.blue)
+                            .foregroundColor(.black)
                     }
                     .buttonStyle(PlainButtonStyle())
                 }
