@@ -29,6 +29,7 @@
 		4E587D9929E50436008DC5F0 /* ClothingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E587D9829E50436008DC5F0 /* ClothingImageView.swift */; };
 		4E587D9B29E5A9CA008DC5F0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E587D9A29E5A9CA008DC5F0 /* LocationManager.swift */; };
 		4E587D9D29E5AC71008DC5F0 /* LocationAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E587D9C29E5AC71008DC5F0 /* LocationAccessView.swift */; };
+		4E6BFF1229EC45E100CAA774 /* NoCatAvailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6BFF1129EC45E100CAA774 /* NoCatAvailView.swift */; };
 		4EE92C3C29D488D30056B868 /* TabContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE92C3B29D488D30056B868 /* TabContainer.swift */; };
 		4EE92C3E29D488FE0056B868 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE92C3D29D488FE0056B868 /* APIError.swift */; };
 		4EE92C4029D489090056B868 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE92C3F29D489090056B868 /* APIClient.swift */; };
@@ -73,6 +74,7 @@
 		4E587D9A29E5A9CA008DC5F0 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		4E587D9C29E5AC71008DC5F0 /* LocationAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAccessView.swift; sourceTree = "<group>"; };
 		4E587D9E29E5B366008DC5F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4E6BFF1129EC45E100CAA774 /* NoCatAvailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCatAvailView.swift; sourceTree = "<group>"; };
 		4EE92C3B29D488D30056B868 /* TabContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContainer.swift; sourceTree = "<group>"; };
 		4EE92C3D29D488FE0056B868 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		4EE92C3F29D489090056B868 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				4E194F4829E1E35600E47152 /* TempView.swift */,
 				4E194F4A29E1F92F00E47152 /* SingleClothingItemView.swift */,
 				4E587D9829E50436008DC5F0 /* ClothingImageView.swift */,
+				4E6BFF1129EC45E100CAA774 /* NoCatAvailView.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E6BFF1229EC45E100CAA774 /* NoCatAvailView.swift in Sources */,
 				4E194F4929E1E35600E47152 /* TempView.swift in Sources */,
 				4275163429E63CCA00EE2D9F /* MapView.swift in Sources */,
 				4E181CCE29DA215600A5A49F /* RangedSliderView.swift in Sources */,

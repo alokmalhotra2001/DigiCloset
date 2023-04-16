@@ -58,6 +58,7 @@ struct MyCloset: View {
                             isPresentingClothingForm = false
                             newClothingFormData = ClothingItem.FormData()
                         }
+                        .disabled(newClothingFormData.name == "" || newClothingFormData.img == Image(systemName: "photo"))
                     }
                 }
             }

@@ -16,9 +16,16 @@ struct TodayDetail: View {
             TempBox(currWeather: currWeather)
                 .offset(y: -40)
             VStack {
-                HStack { SingleClothingItemView(currIndex: $currTopIndex, currItem: wardrobeStore.selectionConfirmed ? wardrobeStore.todayTop! : tops[currTopIndex], currCat: .top, sz: tops.count) }
-                
-                HStack { SingleClothingItemView(currIndex: $currBottomIndex, currItem: wardrobeStore.selectionConfirmed ? wardrobeStore.todayBottom! : bottoms[currBottomIndex], currCat: .bottom, sz: bottoms.count) }
+                if (tops.count == 0) {
+                    HStack { NoItemsAvailableView(currCat: .top) }
+                } else {
+                    HStack { SingleClothingItemView(currIndex: $currTopIndex, currItem: wardrobeStore.selectionConfirmed ? wardrobeStore.todayTop! : tops[currTopIndex], currCat: .top, sz: tops.count) }
+                }
+                if (bottoms.count == 0) {
+                    HStack { NoItemsAvailableView(currCat: .bottom) }
+                } else {
+                    HStack { SingleClothingItemView(currIndex: $currBottomIndex, currItem: wardrobeStore.selectionConfirmed ? wardrobeStore.todayBottom! : bottoms[currBottomIndex], currCat: .bottom, sz: bottoms.count) }
+                }
                 
                 Spacer()
                 Spacer()
@@ -34,7 +41,7 @@ struct TodayDetail: View {
                         .background(.blue)
                         .cornerRadius(8)
                         .buttonStyle(PlainButtonStyle())
-                        .disabled(wardrobeStore.selectionConfirmed)
+                        .disabled(wardrobeStore.selectionConfirmed || tops.count == 0 || bottoms.count == 0)
                     
                     
                     Button {
@@ -45,6 +52,8 @@ struct TodayDetail: View {
                         .foregroundColor(.white)
                         .background(.blue)
                         .cornerRadius(8)
+                        .buttonStyle(PlainButtonStyle())
+                        .disabled(tops.count == 0 || bottoms.count == 0)
                         .alert(isPresented: $isPresentingSelectionAlert) {
                             wardrobeStore.selectionConfirmed ?
                             
