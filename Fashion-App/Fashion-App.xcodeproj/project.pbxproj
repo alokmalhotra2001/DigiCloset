@@ -13,6 +13,9 @@
 		4275163429E63CCA00EE2D9F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4275163329E63CCA00EE2D9F /* MapView.swift */; };
 		4275163629E63CEA00EE2D9F /* PlaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4275163529E63CEA00EE2D9F /* PlaceListView.swift */; };
 		4275163829E63D1F00EE2D9F /* LocationManagerDonate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4275163729E63D1F00EE2D9F /* LocationManagerDonate.swift */; };
+		4275163A29E6FD1D00EE2D9F /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4275163929E6FD1D00EE2D9F /* NotificationsView.swift */; };
+		4275163C29E6FF7300EE2D9F /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4275163B29E6FF7300EE2D9F /* Notification.swift */; };
+		4275163F29E87A6800EE2D9F /* NotificationForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4275163E29E87A6800EE2D9F /* NotificationForm.swift */; };
 		429A748D29D48325007EE95E /* Fashion_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429A748C29D48325007EE95E /* Fashion_AppApp.swift */; };
 		429A749129D48326007EE95E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 429A749029D48326007EE95E /* Assets.xcassets */; };
 		429A749429D48326007EE95E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 429A749329D48326007EE95E /* Preview Assets.xcassets */; };
@@ -52,6 +55,9 @@
 		4275163329E63CCA00EE2D9F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		4275163529E63CEA00EE2D9F /* PlaceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceListView.swift; sourceTree = "<group>"; };
 		4275163729E63D1F00EE2D9F /* LocationManagerDonate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerDonate.swift; sourceTree = "<group>"; };
+		4275163929E6FD1D00EE2D9F /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
+		4275163B29E6FF7300EE2D9F /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		4275163E29E87A6800EE2D9F /* NotificationForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationForm.swift; sourceTree = "<group>"; };
 		429A748929D48325007EE95E /* Fashion-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fashion-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		429A748C29D48325007EE95E /* Fashion_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fashion_AppApp.swift; sourceTree = "<group>"; };
 		429A749029D48326007EE95E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -97,6 +103,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4275163D29E6FFA500EE2D9F /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				4275163B29E6FF7300EE2D9F /* Notification.swift */,
+				4275163929E6FD1D00EE2D9F /* NotificationsView.swift */,
+				4275163E29E87A6800EE2D9F /* NotificationForm.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		429A748029D48325007EE95E = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +234,7 @@
 		4EE92C3629D488240056B868 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				4275163D29E6FFA500EE2D9F /* Notifications */,
 				4E181CAF29D759BD00A5A49F /* Donate */,
 				4E181CAE29D759B400A5A49F /* Today */,
 				4E181CAD29D759A600A5A49F /* Calendar */,
@@ -330,10 +347,13 @@
 				9FE6858629DE3DA400A49F8D /* SelectBottomForm.swift in Sources */,
 				4275163229E63CB400EE2D9F /* ContentView.swift in Sources */,
 				4E181CAB29D756D700A5A49F /* WardrobeStore.swift in Sources */,
+				4275163A29E6FD1D00EE2D9F /* NotificationsView.swift in Sources */,
 				4EE92C4829D4898F0056B868 /* Donate.swift in Sources */,
 				4EE92C4229D489760056B868 /* MyCloset.swift in Sources */,
+				4275163F29E87A6800EE2D9F /* NotificationForm.swift in Sources */,
 				4275162E29E63C6900EE2D9F /* LandmarkAnnotation.swift in Sources */,
 				4275163829E63D1F00EE2D9F /* LocationManagerDonate.swift in Sources */,
+				4275163C29E6FF7300EE2D9F /* Notification.swift in Sources */,
 				4EFD846929DE63B700E31064 /* Weather.swift in Sources */,
 				4EE92C4029D489090056B868 /* APIClient.swift in Sources */,
 				4EFD846B29DF6B6900E31064 /* ForecastLoader.swift in Sources */,

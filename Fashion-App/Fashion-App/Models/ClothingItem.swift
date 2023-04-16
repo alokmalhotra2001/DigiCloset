@@ -92,20 +92,20 @@ extension ClothingItem {
 extension ClothingItem {
     static let previewData: [ClothingItem] = [
         ClothingItem(name: "Alok's Favorite Shirt", tempRange: 50...80,
-                     category: .top, img: Image("alokshirt"), clean: true),
+                     category: .top, img: Image("alokshirt"), clean: true, lastWornOn: Date(timeIntervalSinceNow: -345600)),
         ClothingItem(name: "Alok's Favorite Shorts", tempRange: 40...60,
-                     category: .bottom, img: Image("alokshorts"), clean: false, lastWornOn: Date()),
+                     category: .bottom, img: Image("alokshorts"), clean: true, lastWornOn: Date(timeIntervalSinceNow: -345600)),
         ClothingItem(name: "Alexandra's Favorite Skirt", tempRange: 70...80,
-                     category: .bottom, img: Image("alexandraskirt"), clean: false, lastWornOn: Date()),
+                     category: .bottom, img: Image("alexandraskirt"), clean: false, lastWornOn: Date(timeIntervalSinceNow: -172800)),
         ClothingItem(name: "Alexandra's Favorite Sweater", tempRange: 40...50,
                      category: .top, img: Image("alexandrasweater"), clean: true),
         ClothingItem(name: "Aarzu's Favorite Jeans", tempRange: 40...60,
                      category: .bottom, img: Image("aarzujeans"), clean: true),
         ClothingItem(name: "Aarzu's Favorite Jacket", tempRange: 40...60,
-                     category: .top, img: Image("aarzujacket"), clean: false, lastWornOn: Date()),
+                     category: .top, img: Image("aarzujacket"), clean: true),
         ClothingItem(name: "Deeya's Favorite Cargo Pants", tempRange: 30...40,
-                     category: .bottom, img: Image("deeyacargopants"), clean: true),
+                     category: .bottom, img: Image("deeyacargopants"), clean: true, lastWornOn: Date(timeIntervalSinceNow: -691200)),
         ClothingItem(name: "Deeya's Favorite Crop Top", tempRange: 30...40,
-                     category: .top, img: Image("deeyacroptop"), clean: false)
+                     category: .top, img: Image("deeyacroptop"), clean: false, lastWornOn: Date(timeIntervalSinceNow: -172800))
     ]
 }
