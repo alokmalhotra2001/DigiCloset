@@ -2,7 +2,8 @@ import SwiftUI
 import CoreLocation
 
 struct SelectTopForm: View {
-    let currWeather: CurrentWeather
+    //let currWeather: CurrentWeather
+    let forecastSummary: [ForecastSummary]
     var threeColumnGrid = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     @EnvironmentObject var wardrobeStore: WardrobeStore
     @Binding var dict: [Date: ClothingItem]
@@ -15,7 +16,8 @@ struct SelectTopForm: View {
                 .font(.system(size: 23))
                 .bold()
             
-            TempBox(currWeather: currWeather)
+            ForecastBox(forecastSummary: forecastSummary)
+            //TempBox(currWeather: currWeather)
             
             LazyVGrid(columns: threeColumnGrid) {
                 ForEach($wardrobeStore.clothes

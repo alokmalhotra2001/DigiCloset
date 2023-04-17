@@ -70,11 +70,11 @@ struct Calendar: View {
                 //shirt picker
                 VStack {
                     HStack {
-                        var value = dictionaryTop[date]
+                        let value = dictionaryTop[date]
                         
                         value?.img
                             .resizable()
-                            .frame(maxWidth: 45, maxHeight: 45)
+                            .frame(maxWidth: 55, maxHeight: 55)
                         
                         Text(value?.name ?? "No Top Selected")
                         
@@ -113,7 +113,7 @@ struct Calendar: View {
                 VStack {
                     HStack {
                         
-                        var value = dictionaryBottoms[date]
+                        let value = dictionaryBottoms[date]
                         
                         value?.img
                             .resizable()
@@ -156,16 +156,30 @@ struct Calendar: View {
             
             .sheet(isPresented: $isPresentingTopForm) {
               NavigationStack {
+                  
                   VStack {
-                      switch currentConditionsLoader.state {
+                      switch forecastLoader.state {
                       case .idle: Color.clear
                       case .loading: ProgressView()
                       case .failed(let error): Text("Error \(error.localizedDescription)")
-                      case .success(let currentConditions):
-                          SelectTopForm(currWeather: currentConditions, dict: $dictionaryTop, selectedDate: $date)
+                      case .success(let forecastSummary):
+                          SelectTopForm(forecastSummary: forecastSummary, dict: $dictionaryTop, selectedDate: $date)
                       }
                   }
-                  .task { await currentConditionsLoader.loadWeatherData(coordinate: location) }
+                  .task { await forecastLoader.loadForecastData(coordinate: location) }
+                  
+                  
+                  //currentConditions version
+//                  VStack {
+//                      switch currentConditionsLoader.state {
+//                      case .idle: Color.clear
+//                      case .loading: ProgressView()
+//                      case .failed(let error): Text("Error \(error.localizedDescription)")
+//                      case .success(let currentConditions):
+//                          SelectTopForm(currWeather: currentConditions, dict: $dictionaryTop, selectedDate: $date)
+//                      }
+//                  }
+//                  .task { await currentConditionsLoader.loadWeatherData(coordinate: location) }
                   
                   .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
@@ -219,7 +233,7 @@ struct Calendar_Previews: PreviewProvider {
     static var previews: some View {
         Calendar(location: CLLocationCoordinate2D(latitude: 40.3451, longitude: 74.1840))
             .environmentObject(CurrentConditionsLoader(apiClient: MockWeatherAPIClient()))
-            .environmentObject(WardrobeStore() )
             .environmentObject(ForecastLoader(apiClient: MockWeatherAPIClient()))
+            .environmentObject(WardrobeStore())
     }
 }
