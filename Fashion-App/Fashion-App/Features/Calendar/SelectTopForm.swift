@@ -2,7 +2,6 @@ import SwiftUI
 import CoreLocation
 
 struct SelectTopForm: View {
-    //let currWeather: CurrentWeather
     let forecastSummary: [ForecastSummary]
     var threeColumnGrid = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     @EnvironmentObject var wardrobeStore: WardrobeStore
@@ -11,13 +10,12 @@ struct SelectTopForm: View {
     
     var body: some View {
         ScrollView {
-            Text("Select Top for \(selectedDate.formatted(.dateTime.day().month(.wide).weekday(.wide)))")
+            Text("Select Top for \(selectedDate.formatted(.dateTime.day().month(.wide)))")
                 .padding()
                 .font(.system(size: 23))
                 .bold()
             
             ForecastBox(forecastSummary: forecastSummary, selectedDate: $selectedDate)
-            //TempBox(currWeather: currWeather)
             
             LazyVGrid(columns: threeColumnGrid) {
                 ForEach($wardrobeStore.clothes

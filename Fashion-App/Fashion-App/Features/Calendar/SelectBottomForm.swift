@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SelectBottomForm: View {
-    let currWeather: CurrentWeather
+    let forecastSummary: [ForecastSummary]
     var threeColumnGrid = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     @EnvironmentObject var wardrobeStore: WardrobeStore
     @Binding var dict: [Date: ClothingItem]
@@ -11,13 +11,13 @@ struct SelectBottomForm: View {
         
         ScrollView{
             //Display Selected Day and Daate
-            Text("Select Bottoms for \(selectedDate.formatted(.dateTime.day().month(.wide).weekday(.wide)))")
+            Text("Select Bottoms for \(selectedDate.formatted(.dateTime.day().month(.wide)))")
                 .padding()
                 .font(.system(size: 23))
                 .bold()
             
             //Display Weather Conditions
-            TempBox(currWeather: currWeather)
+            ForecastBox(forecastSummary: forecastSummary, selectedDate: $selectedDate)
             
             //Display All Bottoms in Closet
             LazyVGrid(columns: threeColumnGrid) {

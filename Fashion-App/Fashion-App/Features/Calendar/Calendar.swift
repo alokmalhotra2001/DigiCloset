@@ -170,19 +170,6 @@ struct Calendar: View {
                   }
                   .task { await forecastLoader.loadForecastData(coordinate: location) }
                   
-                  
-                  //currentConditions version
-//                  VStack {
-//                      switch currentConditionsLoader.state {
-//                      case .idle: Color.clear
-//                      case .loading: ProgressView()
-//                      case .failed(let error): Text("Error \(error.localizedDescription)")
-//                      case .success(let currentConditions):
-//                          SelectTopForm(currWeather: currentConditions, dict: $dictionaryTop, selectedDate: $date)
-//                      }
-//                  }
-//                  .task { await currentConditionsLoader.loadWeatherData(coordinate: location) }
-                  
                   .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                       Button("Cancel") { isPresentingTopForm = false }
@@ -203,15 +190,15 @@ struct Calendar: View {
               NavigationStack {
                   
                   VStack {
-                      switch currentConditionsLoader.state {
+                      switch forecastLoader.state {
                       case .idle: Color.clear
                       case .loading: ProgressView()
                       case .failed(let error): Text("Error \(error.localizedDescription)")
-                      case .success(let currentConditions):
-                          SelectBottomForm(currWeather: currentConditions, dict: $dictionaryBottoms, selectedDate: $date)
+                      case .success(let forecastSummary):
+                          SelectBottomForm(forecastSummary: forecastSummary, dict: $dictionaryBottoms, selectedDate: $date)
                       }
                   }
-                  .task { await currentConditionsLoader.loadWeatherData(coordinate: location) }
+                  .task { await forecastLoader.loadForecastData(coordinate: location) }
 
                   .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
