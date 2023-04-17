@@ -60,7 +60,6 @@ struct Calendar: View {
                         .background(.blue)
                         .cornerRadius(8)
                         .buttonStyle(PlainButtonStyle())
-                        .disabled(wardrobeStore.selectionConfirmed || tops.count == 0 || bottoms.count == 0)
                 }
                 .padding()
                 
