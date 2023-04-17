@@ -16,7 +16,7 @@ struct SelectTopForm: View {
                 .font(.system(size: 23))
                 .bold()
             
-            ForecastBox(forecastSummary: forecastSummary)
+            ForecastBox(forecastSummary: forecastSummary, selectedDate: $selectedDate)
             //TempBox(currWeather: currWeather)
             
             LazyVGrid(columns: threeColumnGrid) {
