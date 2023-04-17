@@ -41,6 +41,8 @@ struct Calendar: View {
                     .datePickerStyle(GraphicalDatePickerStyle())
                     .accentColor(.blue)
                 
+                
+                
                 //generate random outfit for selected date
                 HStack {
                     Button {
