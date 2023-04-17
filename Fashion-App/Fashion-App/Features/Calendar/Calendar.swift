@@ -13,8 +13,6 @@ struct Calendar: View {
     @State var isPresentingTopForm: Bool = false
     @State var isPresentingBottomsForm: Bool = false
     @State var newClothingFormData = ClothingItem.FormData()
-    @State var dictionaryTop: [Date: ClothingItem] = [:]
-    @State var dictionaryBottoms: [Date: ClothingItem] = [:]
     @State var currTopIndex: Int = 0
     @State var currBottomIndex: Int = 0
     @State var topSelected: Bool = false
@@ -47,11 +45,11 @@ struct Calendar: View {
                 HStack {
                     Button {
                         currTopIndex = Int.random(in: 0..<tops.count)
-                        dictionaryTop[date] = tops[currTopIndex]
+                        wardrobeStore.dictionaryTop[date] = tops[currTopIndex]
                         topSelected = true
                         
                         currBottomIndex = Int.random(in: 0..<bottoms.count)
-                        dictionaryBottoms[date] = bottoms[currBottomIndex]
+                        wardrobeStore.dictionaryBottoms[date] = bottoms[currBottomIndex]
                         bottomSelected = true
                     } label: { Text("Generate Random Outfit") }
                         .padding(.horizontal, 10)
@@ -71,7 +69,7 @@ struct Calendar: View {
                 //shirt picker
                 VStack {
                     HStack {
-                        let value = dictionaryTop[date]
+                        let value = wardrobeStore.dictionaryTop[date]
                         
                         value?.img
                             .resizable()
@@ -79,7 +77,7 @@ struct Calendar: View {
                         
                         Text(value?.name ?? "No Top Selected")
                         
-                        if (dictionaryTop[date] == nil){
+                        if (wardrobeStore.dictionaryTop[date] == nil){
                             Button {
                                 isPresentingTopForm.toggle()
                             } label: {
@@ -94,7 +92,7 @@ struct Calendar: View {
                         //reset top selection
                         else {
                             Button {
-                                dictionaryTop[date] = nil
+                                wardrobeStore.dictionaryTop[date] = nil
                             } label: {
                                 Text("reset top")
                                     .foregroundColor(.white)
@@ -114,7 +112,7 @@ struct Calendar: View {
                 VStack {
                     HStack {
                         
-                        let value = dictionaryBottoms[date]
+                        let value = wardrobeStore.dictionaryBottoms[date]
                         
                         value?.img
                             .resizable()
@@ -123,7 +121,7 @@ struct Calendar: View {
                         Text(value?.name ?? "No Bottoms Selected")
                         
                         //display edit bottoms button
-                        if (dictionaryBottoms[date] == nil){
+                        if (wardrobeStore.dictionaryBottoms[date] == nil){
                             Button {
                                 isPresentingBottomsForm.toggle()
                             } label: {
@@ -138,7 +136,7 @@ struct Calendar: View {
                         //reset bottoms selection
                         else {
                             Button {
-                                dictionaryBottoms[date] = nil
+                                wardrobeStore.dictionaryBottoms[date] = nil
                             } label: {
                                 Text("reset bottoms")
                                     .foregroundColor(.white)
@@ -164,7 +162,7 @@ struct Calendar: View {
                       case .loading: ProgressView()
                       case .failed(let error): Text("Error \(error.localizedDescription)")
                       case .success(let forecastSummary):
-                          SelectTopForm(forecastSummary: forecastSummary, dict: $dictionaryTop, selectedDate: $date)
+                          SelectTopForm(forecastSummary: forecastSummary,selectedDate: $date)
                       }
                   }
                   .task { await forecastLoader.loadForecastData(coordinate: location) }
@@ -194,7 +192,7 @@ struct Calendar: View {
                       case .loading: ProgressView()
                       case .failed(let error): Text("Error \(error.localizedDescription)")
                       case .success(let forecastSummary):
-                          SelectBottomForm(forecastSummary: forecastSummary, dict: $dictionaryBottoms, selectedDate: $date)
+                          SelectBottomForm(forecastSummary: forecastSummary, selectedDate: $date)
                       }
                   }
                   .task { await forecastLoader.loadForecastData(coordinate: location) }

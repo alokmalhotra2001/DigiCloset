@@ -5,7 +5,6 @@ struct SelectTopForm: View {
     let forecastSummary: [ForecastSummary]
     var threeColumnGrid = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     @EnvironmentObject var wardrobeStore: WardrobeStore
-    @Binding var dict: [Date: ClothingItem]
     @Binding var selectedDate: Date
     
     var body: some View {
@@ -21,7 +20,7 @@ struct SelectTopForm: View {
                 ForEach($wardrobeStore.clothes
                     .filter({ $0.category
                         .wrappedValue == .top})) { $clothingItem in
-                            SelectTopCell(clothingItem: $clothingItem, dict: $dict, selectedDate: $selectedDate)
+                            SelectTopCell(clothingItem: $clothingItem, selectedDate: $selectedDate)
                 }
             }
        }
@@ -31,13 +30,12 @@ struct SelectTopForm: View {
 struct SelectTopCell: View {
     @Binding var clothingItem: ClothingItem
     @EnvironmentObject var wardrobeStore: WardrobeStore
-    @Binding var dict: [Date: ClothingItem]
     @Binding var selectedDate: Date
     
     var body: some View {
             VStack {
                 Button {
-                    dict[selectedDate] = clothingItem
+                    wardrobeStore.dictionaryTop[selectedDate] = clothingItem
                 } label: {
                     clothingItem.img
                         .resizable()
