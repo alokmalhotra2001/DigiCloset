@@ -7,12 +7,21 @@ class WardrobeStore: ObservableObject {
     @Published var clothes_dynamic: [ClothingItem] = ClothingItem.previewData // used in donate
     @Published var clothes_donate = [ClothingItem]()
     
-    @Published var dictionaryTop: [Date: ClothingItem] = [:]
-    @Published var dictionaryBottoms: [Date: ClothingItem] = [:]
+    @Published var dictionaryTop: [String: ClothingItem] = [:]
+    @Published var dictionaryBottoms: [String: ClothingItem] = [:]
+    
+//    @Published var dictionaryTop: [Date: ClothingItem] = [:]
+//    @Published var dictionaryBottoms: [Date: ClothingItem] = [:]
     
   func addClothingItem(_ clothingItem: ClothingItem) { clothes.append(clothingItem) }
   
   func addDonate(_ clothingItem: ClothingItem) { clothes_donate.append(clothingItem) }
+    
+func dateToStringCal(date: Date) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "MM/dd/YY"
+    return dateFormatter.string(from: date)
+}
   
   func removeDynamic(_ clothingItem: ClothingItem){
        if let index = clothes_dynamic.firstIndex(where: { $0.id == clothingItem.id }) {

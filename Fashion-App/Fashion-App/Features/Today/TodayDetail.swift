@@ -72,6 +72,8 @@ struct TodayDetail: View {
                                     let notif: Notification = Notification(top: tops[currTopIndex], bottom: bottoms[currBottomIndex], timestamp: Date.now)
                                     wardrobeStore.addNotification(notif: notif)
                                     wardrobeStore.confirmOutfitSelection(selectedTop: tops[currTopIndex], selectedBottom: bottoms[currBottomIndex])
+                                    wardrobeStore.dictionaryTop[wardrobeStore.dateToStringCal(date: Date.now)] = tops[currTopIndex]
+                                    wardrobeStore.dictionaryBottoms[wardrobeStore.dateToStringCal(date: Date.now)] = bottoms[currBottomIndex]
                                   },
                                   secondaryButton: .cancel())
                         }
