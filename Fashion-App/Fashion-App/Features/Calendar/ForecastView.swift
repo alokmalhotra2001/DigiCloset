@@ -9,9 +9,9 @@ struct ForecastBox: View {
     
     var body: some View {
         //n is the difference in number of days between selected days and today
-        var n = Int(round(selectedDate.timeIntervalSinceNow / (24*60*60)))
+        let n = Int(round(selectedDate.timeIntervalSinceNow / (24*60*60)))
         
-        var interval = interval + 7*n
+        let interval = interval + 7*n
         
         let value = NumberFormatting.temperature(forecastSummary[interval].data.temp) ?? "n/a"
         HStack {
@@ -23,7 +23,7 @@ struct ForecastBox: View {
     }
     
 //    func weatherIconURL() -> String {
-//        let iconCode: String = forecastSummary[0].WeatherInfo.
+//        let iconCode: String = forecastSummary[interval].icon
 //        return "https://openweathermap.org/img/wn/\(iconCode)@2x.png"
 //    }
 }

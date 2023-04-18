@@ -17,9 +17,10 @@ struct Calendar: View {
     @State var currBottomIndex: Int = 0
     @State var topSelected: Bool = false
     @State var bottomSelected: Bool = false
+    let minSelectable = Date.now
     
     var dateClosedRange: ClosedRange<Date> {
-        let min = Date.now.addingTimeInterval(60*60*24*1)
+        let min = Date.distantPast
         let max = Date.now.addingTimeInterval(60*60*24*5)
         return min...max
     }
@@ -58,11 +59,12 @@ struct Calendar: View {
                         .background(.blue)
                         .cornerRadius(8)
                         .buttonStyle(PlainButtonStyle())
+                        .disabled(date <= minSelectable)
                 }
                 .padding()
                 
                 //pick outfit
-                Text("My outfit for \(date.formatted(.dateTime.day().month(.wide).weekday(.wide)))")
+                Text(date <= Date.now ? "What I Wore on \(date.formatted(.dateTime.day().month(.wide).weekday(.wide)))" : "Plan to Wear on \(date.formatted(.dateTime.day().month(.wide).weekday(.wide)))")
                     .padding()
                     .bold()
                 
@@ -77,31 +79,35 @@ struct Calendar: View {
                         
                         Text(value?.name ?? "No Top Selected")
                         
-                        if (wardrobeStore.dictionaryTop[wardrobeStore.dateToStringCal(date: date)] == nil){
-                            Button {
-                                isPresentingTopForm.toggle()
-                            } label: {
-                                Image(systemName: "square.and.pencil.circle")
-                                    .resizable()
-                                    .frame(maxWidth: 30, maxHeight: 30)
-                                    .foregroundColor(.blue)
+                        if (date >= Date.now){
+                            if (wardrobeStore.dictionaryTop[wardrobeStore.dateToStringCal(date: date)] == nil){
+                                Button {
+                                    isPresentingTopForm.toggle()
+                                } label: {
+                                    Image(systemName: "square.and.pencil.circle")
+                                        .resizable()
+                                        .frame(maxWidth: 30, maxHeight: 30)
+                                        .foregroundColor(.blue)
+                                        .buttonStyle(PlainButtonStyle())
+                                        .disabled(date <= minSelectable)
+                                }
                             }
-                            .buttonStyle(PlainButtonStyle())
-                        }
-                        
-                        //reset top selection
-                        else {
-                            Button {
-                                wardrobeStore.dictionaryTop[wardrobeStore.dateToStringCal(date: date)] = nil
-                            } label: {
-                                Text("reset top")
-                                    .foregroundColor(.white)
-                                    .padding(.horizontal, 10)
-                                    .padding(.vertical, 4)
-                                    .foregroundColor(.white)
-                                    .background(.blue)
-                                    .cornerRadius(8)
-                                    .buttonStyle(PlainButtonStyle())
+                            
+                            //reset top selection
+                            else {
+                                Button {
+                                    wardrobeStore.dictionaryTop[wardrobeStore.dateToStringCal(date: date)] = nil
+                                } label: {
+                                    Text("reset top")
+                                        .foregroundColor(.white)
+                                        .padding(.horizontal, 10)
+                                        .padding(.vertical, 4)
+                                        .foregroundColor(.white)
+                                        .background(.blue)
+                                        .cornerRadius(8)
+                                        .buttonStyle(PlainButtonStyle())
+                                        .disabled(date <= minSelectable)
+                                }
                             }
                         }
                         
@@ -120,34 +126,40 @@ struct Calendar: View {
                         
                         Text(value?.name ?? "No Bottoms Selected")
                         
-                        //display edit bottoms button
-                        if (wardrobeStore.dictionaryBottoms[wardrobeStore.dateToStringCal(date: date)] == nil){
-                            Button {
-                                isPresentingBottomsForm.toggle()
-                            } label: {
-                                Image(systemName: "square.and.pencil.circle")
-                                    .resizable()
-                                    .frame(maxWidth: 30, maxHeight: 30)
-                                    .foregroundColor(.blue)
+                        //display edit bottoms button only for future dates
+                        if (date >= Date.now){
+                            if (wardrobeStore.dictionaryBottoms[wardrobeStore.dateToStringCal(date: date)] == nil){
+                                Button {
+                                    isPresentingBottomsForm.toggle()
+                                } label: {
+                                    Image(systemName: "square.and.pencil.circle")
+                                        .resizable()
+                                        .frame(maxWidth: 30, maxHeight: 30)
+                                        .foregroundColor(.blue)
+                                        .buttonStyle(PlainButtonStyle())
+                                        .disabled(date <= minSelectable)
+                                }
                             }
-                            .buttonStyle(PlainButtonStyle())
+                            
+                            //reset bottoms selection
+                            else {
+                                Button {
+                                    wardrobeStore.dictionaryBottoms[wardrobeStore.dateToStringCal(date: date)] = nil
+                                } label: {
+                                    Text("reset bottoms")
+                                        .foregroundColor(.white)
+                                        .padding(.horizontal, 10)
+                                        .padding(.vertical, 4)
+                                        .foregroundColor(.white)
+                                        .background(.blue)
+                                        .cornerRadius(8)
+                                        .buttonStyle(PlainButtonStyle())
+                                        .disabled(date <= minSelectable)
+                                }
+                            }
+                            
                         }
                         
-                        //reset bottoms selection
-                        else {
-                            Button {
-                                wardrobeStore.dictionaryBottoms[wardrobeStore.dateToStringCal(date: date)] = nil
-                            } label: {
-                                Text("reset bottoms")
-                                    .foregroundColor(.white)
-                                    .padding(.horizontal, 10)
-                                    .padding(.vertical, 4)
-                                    .foregroundColor(.white)
-                                    .background(.blue)
-                                    .cornerRadius(8)
-                                    .buttonStyle(PlainButtonStyle())
-                            }
-                        }
                     }
                 }
                 
