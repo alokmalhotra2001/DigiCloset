@@ -19,7 +19,7 @@ struct Calendar: View {
     @State var bottomSelected: Bool = false
     
     var dateClosedRange: ClosedRange<Date> {
-        let min = Date()
+        let min = Date.now.addingTimeInterval(60*60*24*1)
         let max = Date.now.addingTimeInterval(60*60*24*5)
         return min...max
     }
