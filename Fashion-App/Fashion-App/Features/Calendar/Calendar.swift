@@ -64,7 +64,7 @@ struct Calendar: View {
                 .padding()
                 
                 //pick outfit
-                Text(date <= Date.now ? "What I wore on \(date.formatted(.dateTime.day().month(.wide).weekday(.wide)))" : "My outfit for \(date.formatted(.dateTime.day().month(.wide).weekday(.wide)))")
+                Text(date <= Date.now ? "What I Wore on \(date.formatted(.dateTime.day().month(.wide).weekday(.wide)))" : "Plan to Wear on \(date.formatted(.dateTime.day().month(.wide).weekday(.wide)))")
                     .padding()
                     .bold()
                 
