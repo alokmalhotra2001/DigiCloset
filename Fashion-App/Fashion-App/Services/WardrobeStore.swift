@@ -7,6 +7,9 @@ class WardrobeStore: ObservableObject {
     @Published var clothes_dynamic: [ClothingItem] = ClothingItem.previewData // used in donate
     @Published var clothes_donate = [ClothingItem]()
     
+    @Published var dictionaryTop: [Date: ClothingItem] = [:]
+    @Published var dictionaryBottoms: [Date: ClothingItem] = [:]
+    
   func addClothingItem(_ clothingItem: ClothingItem) { clothes.append(clothingItem) }
   
   func addDonate(_ clothingItem: ClothingItem) { clothes_donate.append(clothingItem) }

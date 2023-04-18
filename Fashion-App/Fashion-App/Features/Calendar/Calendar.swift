@@ -13,8 +13,6 @@ struct Calendar: View {
     @State var isPresentingTopForm: Bool = false
     @State var isPresentingBottomsForm: Bool = false
     @State var newClothingFormData = ClothingItem.FormData()
-    @State var dictionaryTop: [Date: ClothingItem] = [:]
-    @State var dictionaryBottoms: [Date: ClothingItem] = [:]
     @State var currTopIndex: Int = 0
     @State var currBottomIndex: Int = 0
     @State var topSelected: Bool = false
@@ -41,91 +39,115 @@ struct Calendar: View {
                     .datePickerStyle(GraphicalDatePickerStyle())
                     .accentColor(.blue)
                 
+                
+                
                 //generate random outfit for selected date
                 HStack {
                     Button {
                         currTopIndex = Int.random(in: 0..<tops.count)
-                        dictionaryTop[date] = tops[currTopIndex]
+                        wardrobeStore.dictionaryTop[date] = tops[currTopIndex]
                         topSelected = true
                         
                         currBottomIndex = Int.random(in: 0..<bottoms.count)
-                        dictionaryBottoms[date] = bottoms[currBottomIndex]
+                        wardrobeStore.dictionaryBottoms[date] = bottoms[currBottomIndex]
                         bottomSelected = true
                     } label: { Text("Generate Random Outfit") }
                         .padding(.horizontal, 10)
                         .padding(.vertical, 8)
                         .foregroundColor(.white)
-                        .background(.black)
+                        .background(.blue)
                         .cornerRadius(8)
                         .buttonStyle(PlainButtonStyle())
-                        .disabled(wardrobeStore.selectionConfirmed || tops.count == 0 || bottoms.count == 0)
                 }
+                .padding()
                 
                 //pick outfit
                 Text("My outfit for \(date.formatted(.dateTime.day().month(.wide).weekday(.wide)))")
                     .padding()
+                    .bold()
                 
                 //shirt picker
                 VStack {
                     HStack {
-                        var value = dictionaryTop[date]
+                        let value = wardrobeStore.dictionaryTop[date]
                         
                         value?.img
                             .resizable()
-                            .frame(maxWidth: 45, maxHeight: 45)
+                            .frame(maxWidth: 55, maxHeight: 55)
                         
                         Text(value?.name ?? "No Top Selected")
                         
-                        Button {
-                            isPresentingTopForm.toggle()
-                        } label: {
-                            Image(systemName: "square.and.pencil.circle")
-                                .resizable()
-                                .frame(maxWidth: 30, maxHeight: 30)
-                                .foregroundColor(.black)
+                        if (wardrobeStore.dictionaryTop[date] == nil){
+                            Button {
+                                isPresentingTopForm.toggle()
+                            } label: {
+                                Image(systemName: "square.and.pencil.circle")
+                                    .resizable()
+                                    .frame(maxWidth: 30, maxHeight: 30)
+                                    .foregroundColor(.blue)
+                            }
+                            .buttonStyle(PlainButtonStyle())
                         }
-                        .buttonStyle(PlainButtonStyle())
+                        
+                        //reset top selection
+                        else {
+                            Button {
+                                wardrobeStore.dictionaryTop[date] = nil
+                            } label: {
+                                Text("reset top")
+                                    .foregroundColor(.white)
+                                    .padding(.horizontal, 10)
+                                    .padding(.vertical, 4)
+                                    .foregroundColor(.white)
+                                    .background(.blue)
+                                    .cornerRadius(8)
+                                    .buttonStyle(PlainButtonStyle())
+                            }
+                        }
+                        
                     }
-                    
-                    //reset top selection
-                    Button {
-                        dictionaryTop[date] = nil
-                    } label: {
-                        Text("reset top")
-                            .foregroundColor(.blue)
-                    }
-                    .padding()
                 }
                 
                 //bottoms picker
                 VStack {
                     HStack {
                         
-                        var value = dictionaryBottoms[date]
+                        let value = wardrobeStore.dictionaryBottoms[date]
                         
                         value?.img
                             .resizable()
-                            .frame(maxWidth: 45, maxHeight: 45)
+                            .frame(maxWidth: 55, maxHeight: 55)
                         
                         Text(value?.name ?? "No Bottoms Selected")
                         
-                        Button {
-                            isPresentingBottomsForm.toggle()
-                        } label: {
-                            Image(systemName: "square.and.pencil.circle")
-                                .resizable()
-                                .frame(maxWidth: 30, maxHeight: 30)
-                                .foregroundColor(.black)
+                        //display edit bottoms button
+                        if (wardrobeStore.dictionaryBottoms[date] == nil){
+                            Button {
+                                isPresentingBottomsForm.toggle()
+                            } label: {
+                                Image(systemName: "square.and.pencil.circle")
+                                    .resizable()
+                                    .frame(maxWidth: 30, maxHeight: 30)
+                                    .foregroundColor(.blue)
+                            }
+                            .buttonStyle(PlainButtonStyle())
                         }
-                        .buttonStyle(PlainButtonStyle())
-                    }
-                    
-                    //reset bottoms selection
-                    Button {
-                        dictionaryBottoms[date] = nil
-                    } label: {
-                        Text("reset bottom")
-                            .foregroundColor(.blue)
+                        
+                        //reset bottoms selection
+                        else {
+                            Button {
+                                wardrobeStore.dictionaryBottoms[date] = nil
+                            } label: {
+                                Text("reset bottoms")
+                                    .foregroundColor(.white)
+                                    .padding(.horizontal, 10)
+                                    .padding(.vertical, 4)
+                                    .foregroundColor(.white)
+                                    .background(.blue)
+                                    .cornerRadius(8)
+                                    .buttonStyle(PlainButtonStyle())
+                            }
+                        }
                     }
                 }
                 
@@ -133,16 +155,17 @@ struct Calendar: View {
             
             .sheet(isPresented: $isPresentingTopForm) {
               NavigationStack {
+                  
                   VStack {
-                      switch currentConditionsLoader.state {
+                      switch forecastLoader.state {
                       case .idle: Color.clear
                       case .loading: ProgressView()
                       case .failed(let error): Text("Error \(error.localizedDescription)")
-                      case .success(let currentConditions):
-                          SelectTopForm(currWeather: currentConditions, dict: $dictionaryTop, selectedDate: $date)
+                      case .success(let forecastSummary):
+                          SelectTopForm(forecastSummary: forecastSummary,selectedDate: $date)
                       }
                   }
-                  .task { await currentConditionsLoader.loadWeatherData(coordinate: location) }
+                  .task { await forecastLoader.loadForecastData(coordinate: location) }
                   
                   .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
@@ -164,15 +187,15 @@ struct Calendar: View {
               NavigationStack {
                   
                   VStack {
-                      switch currentConditionsLoader.state {
+                      switch forecastLoader.state {
                       case .idle: Color.clear
                       case .loading: ProgressView()
                       case .failed(let error): Text("Error \(error.localizedDescription)")
-                      case .success(let currentConditions):
-                          SelectBottomForm(currWeather: currentConditions, dict: $dictionaryBottoms, selectedDate: $date)
+                      case .success(let forecastSummary):
+                          SelectBottomForm(forecastSummary: forecastSummary, selectedDate: $date)
                       }
                   }
-                  .task { await currentConditionsLoader.loadWeatherData(coordinate: location) }
+                  .task { await forecastLoader.loadForecastData(coordinate: location) }
 
                   .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
@@ -196,7 +219,7 @@ struct Calendar_Previews: PreviewProvider {
     static var previews: some View {
         Calendar(location: CLLocationCoordinate2D(latitude: 40.3451, longitude: 74.1840))
             .environmentObject(CurrentConditionsLoader(apiClient: MockWeatherAPIClient()))
-            .environmentObject(WardrobeStore() )
             .environmentObject(ForecastLoader(apiClient: MockWeatherAPIClient()))
+            .environmentObject(WardrobeStore())
     }
 }
