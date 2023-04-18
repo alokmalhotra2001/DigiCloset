@@ -46,6 +46,10 @@ struct TodayDetail: View {
                     
                     Button {
                         isPresentingSelectionAlert = true
+//                        if (wardrobeStore.selectionConfirmed){
+//                            wardrobeStore.dictionaryTop[Date()] = tops[currTopIndex]
+//                            wardrobeStore.dictionaryBottoms[Date()] = bottoms[currBottomIndex]
+//                        }
                     } label: { wardrobeStore.selectionConfirmed ? Text("Reset") : Text("Confirm") }
                         .padding(.horizontal, 10)
                         .padding(.vertical, 8)

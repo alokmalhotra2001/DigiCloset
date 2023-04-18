@@ -45,11 +45,11 @@ struct Calendar: View {
                 HStack {
                     Button {
                         currTopIndex = Int.random(in: 0..<tops.count)
-                        wardrobeStore.dictionaryTop[date] = tops[currTopIndex]
+                        wardrobeStore.dictionaryTop[wardrobeStore.dateToStringCal(date: date)] = tops[currTopIndex]
                         topSelected = true
                         
                         currBottomIndex = Int.random(in: 0..<bottoms.count)
-                        wardrobeStore.dictionaryBottoms[date] = bottoms[currBottomIndex]
+                        wardrobeStore.dictionaryBottoms[wardrobeStore.dateToStringCal(date: date)] = bottoms[currBottomIndex]
                         bottomSelected = true
                     } label: { Text("Generate Random Outfit") }
                         .padding(.horizontal, 10)
@@ -69,7 +69,7 @@ struct Calendar: View {
                 //shirt picker
                 VStack {
                     HStack {
-                        let value = wardrobeStore.dictionaryTop[date]
+                        let value = wardrobeStore.dictionaryTop[wardrobeStore.dateToStringCal(date: date)]
                         
                         value?.img
                             .resizable()
@@ -77,7 +77,7 @@ struct Calendar: View {
                         
                         Text(value?.name ?? "No Top Selected")
                         
-                        if (wardrobeStore.dictionaryTop[date] == nil){
+                        if (wardrobeStore.dictionaryTop[wardrobeStore.dateToStringCal(date: date)] == nil){
                             Button {
                                 isPresentingTopForm.toggle()
                             } label: {
@@ -92,7 +92,7 @@ struct Calendar: View {
                         //reset top selection
                         else {
                             Button {
-                                wardrobeStore.dictionaryTop[date] = nil
+                                wardrobeStore.dictionaryTop[wardrobeStore.dateToStringCal(date: date)] = nil
                             } label: {
                                 Text("reset top")
                                     .foregroundColor(.white)
@@ -112,7 +112,7 @@ struct Calendar: View {
                 VStack {
                     HStack {
                         
-                        let value = wardrobeStore.dictionaryBottoms[date]
+                        let value = wardrobeStore.dictionaryBottoms[wardrobeStore.dateToStringCal(date: date)]
                         
                         value?.img
                             .resizable()
@@ -121,7 +121,7 @@ struct Calendar: View {
                         Text(value?.name ?? "No Bottoms Selected")
                         
                         //display edit bottoms button
-                        if (wardrobeStore.dictionaryBottoms[date] == nil){
+                        if (wardrobeStore.dictionaryBottoms[wardrobeStore.dateToStringCal(date: date)] == nil){
                             Button {
                                 isPresentingBottomsForm.toggle()
                             } label: {
@@ -136,7 +136,7 @@ struct Calendar: View {
                         //reset bottoms selection
                         else {
                             Button {
-                                wardrobeStore.dictionaryBottoms[date] = nil
+                                wardrobeStore.dictionaryBottoms[wardrobeStore.dateToStringCal(date: date)] = nil
                             } label: {
                                 Text("reset bottoms")
                                     .foregroundColor(.white)

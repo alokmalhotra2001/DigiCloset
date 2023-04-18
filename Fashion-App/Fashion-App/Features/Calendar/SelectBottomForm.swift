@@ -39,7 +39,7 @@ struct SelectBottomCell: View {
     var body: some View {
         VStack {
             Button  {
-                wardrobeStore.dictionaryBottoms[selectedDate] = clothingItem
+                wardrobeStore.dictionaryBottoms[wardrobeStore.dateToStringCal(date: selectedDate)] = clothingItem
             }label: {
                 clothingItem.img
                     .resizable()
