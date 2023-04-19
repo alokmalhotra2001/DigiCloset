@@ -8,9 +8,41 @@ struct TodayDetail: View {
     @State var isPresentingSelectionAlert: Bool = false
     @EnvironmentObject var wardrobeStore: WardrobeStore
     
+    func calendarCheck(clothes: [ClothingItem], category: Category) -> [ClothingItem] {
+        let currDate = dateToString(date: Date.now)
+        var selectionAtFront = clothes
+        
+        if (category == .top) {
+            if (wardrobeStore.dictionaryTop.contains{ $0.key == currDate } ) {
+                if let preSelectedTop = wardrobeStore.dictionaryTop[currDate] {
+                    if (preSelectedTop.clean) {
+                        if let index = clothes.firstIndex(where: { $0.id == preSelectedTop.id } ) {
+                            selectionAtFront.swapAt(0, index)
+                        }
+                    }
+                }
+            }
+            else { return clothes }
+        }
+        else {
+            if (wardrobeStore.dictionaryBottoms.contains{ $0.key == currDate } ) {
+                if let preSelectedBottom = wardrobeStore.dictionaryBottoms[currDate] {
+                    if (preSelectedBottom.clean) {
+                        if let index = clothes.firstIndex(where: { $0.id == preSelectedBottom.id } ) {
+                            selectionAtFront.swapAt(0, index)
+                        }
+                    }
+                }
+            }
+            else { return clothes }
+        }
+    
+        return selectionAtFront
+    }
+    
     var body: some View {
-        let tops = wardrobeStore.getCleanTops().sorted(by: { sortByTempDiff(i1: $0, i2: $1, currWeather: currWeather) } )
-        let bottoms = wardrobeStore.getCleanBottoms().sorted(by: { sortByTempDiff(i1: $0, i2: $1, currWeather: currWeather) } )
+        let tops = calendarCheck(clothes: wardrobeStore.getCleanTops().sorted(by: { sortByTempDiff(i1: $0, i2: $1, currWeather: currWeather) } ), category: .top )
+        let bottoms = calendarCheck(clothes: wardrobeStore.getCleanBottoms().sorted(by: { sortByTempDiff(i1: $0, i2: $1, currWeather: currWeather) } ), category: .bottom )
         
         VStack {
             TempBox(currWeather: currWeather)

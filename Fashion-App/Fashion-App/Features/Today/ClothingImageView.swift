@@ -16,7 +16,7 @@ struct ClothingImageView: View {
                 .foregroundColor(.black)
                 .clipped()
                 .cornerRadius(16)
-                .overlay(RoundedRectangle(cornerRadius: 16).stroke(.black, lineWidth: 1))
+                .overlay(RoundedRectangle(cornerRadius: 16).stroke(.black, lineWidth: 3))
         :
         currItem.img
             .resizable()
@@ -26,6 +26,6 @@ struct ClothingImageView: View {
             .foregroundColor(.black)
             .clipped()
             .cornerRadius(16)
-            .overlay(RoundedRectangle(cornerRadius: 16).stroke(.black, lineWidth: 1))
+            .overlay(RoundedRectangle(cornerRadius: 16).stroke(.black, lineWidth: 3))
     }
 }

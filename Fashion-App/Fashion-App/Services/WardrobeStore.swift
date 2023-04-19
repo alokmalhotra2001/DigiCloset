@@ -7,11 +7,8 @@ class WardrobeStore: ObservableObject {
     @Published var clothes_dynamic: [ClothingItem] = ClothingItem.previewData // used in donate
     @Published var clothes_donate = [ClothingItem]()
     
-    @Published var dictionaryTop: [String: ClothingItem] = [:]
-    @Published var dictionaryBottoms: [String: ClothingItem] = [:]
-    
-//    @Published var dictionaryTop: [Date: ClothingItem] = [:]
-//    @Published var dictionaryBottoms: [Date: ClothingItem] = [:]
+    @Published var dictionaryTop: [String: ClothingItem] = [dateToString(date: Date.now): ClothingItem.previewData[0]]
+    @Published var dictionaryBottoms: [String: ClothingItem] = [dateToString(date: Date.now): ClothingItem.previewData[6]]
     
   func addClothingItem(_ clothingItem: ClothingItem) { clothes.append(clothingItem) }
   
